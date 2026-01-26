@@ -2,17 +2,42 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O nas | Total Logistics</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-grey">
-    <header><nav class="container"><a href="index.html" style="color:white; text-decoration:none;">← Powrót</a></nav></header>
-    <main class="container section">
-        <h1>Dlaczego Total Logistics?</h1>
-        <p class="mt-20">Lokalizacja <strong>Błonie, ul. Sochaczewska 96c</strong> to serce polskiej logistyki. Oferujemy nie tylko m², ale pełne wsparcie: etykietowanie, kompletację i zarządzanie zapasami.</p>
-    </main>
-    <script>lucide.createIcons();</script>
-</body>
-</html>
+    <style>
+        /* --- STYLE SPECYFICZNE DLA PODSTRONY O NAS --- */
+        
+        /* Nagłówek z tłem */
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 60px;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        
+        /* Układ tekst + zdjęcie */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1
