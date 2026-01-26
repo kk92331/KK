@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wideo z Otwarcia | Total Logistics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; color: #333; margin: 0; line-height: 1.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* HEADER */
+        header { background: white; padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo a { text-decoration: none; color: #333; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 5px; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: #2563eb; }
+        
+        .article-container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 15px 0; }
+
+        /* KONTENER WIDEO */
+        .video-container { 
+            position: relative; 
+            width: 100%;
+            border-radius: 10px; 
+            overflow: hidden; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            background: #000;
+            line-height: 0; /* Usuwa puste miejsce pod wideo */
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content ul { list-style-type: disc; margin-left: 20px; color: #555; }
+        .content li { margin-bottom: 10px; }
+
+        .btn-back { display: inline-flex; align-items: center; gap: 5px; margin-top: 40px; text-decoration: none; color: #2563eb; font-weight: bold; transition: 0.3s;}
+        .btn-back:hover { text-decoration: underline; }
+        
+        @media(max-width: 768px) { .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div>
+            <ul class="nav-links">
+                <li><a href="o-nas.html">O nas</a></li>
+                <li><a href="aktualnosci.html" style="color: #2563eb;">Aktualności</a></li>
+                <li><a href="index.html#demo">Strefa Klienta</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <article class="article-container">
+        <span style="color: #888; font-weight: bold; letter-spacing: 1px;">RELACJA WIDEO</span>
+        <h1 style="margin: 10px 0;">Nowoczesny system składowania – Zobacz jak działamy</h1>
+        
+        <div class="video-container">
+            <video autoplay muted loop playsinline controls>
+                <source src="https://cdn.pixabay.com/video/2019/04/23/23011-332483109_large.mp4" type="video/mp4">
+                Twoja przeglądarka nie obsługuje tagu wideo.
+            </video>
+        </div>
+        
+        <div class="content">
+            <p>15 grudnia 2025 roku oficjalnie uruchomiliśmy nasz nowy system zarządzania magazynem (WMS) zintegrowany z automatyką sortującą. Powyższy materiał wideo prezentuje, jak technologia wspiera naszych pracowników w codziennych zadaniach.</p>
+            
+            <p><strong>Najważniejsze momenty widoczne na nagraniu:</strong></p>
+            <ul>
+                <li>Automatyczne skanowanie kodów kreskowych w ruchu (skuteczność 99.9%).</li>
+                <li>Sortowanie przesyłek z prędkością do 4000 paczek na godzinę.</li>
+                <li>Płynny przepływ towarów bez ingerencji manualnej.</li>
+            </ul>
+
+            <div style="background: #f8fafc; padding: 20px; border-left: 4px solid #2563eb; margin-top: 30px;">
+                <p style="margin: 0; font-style: italic;">"Patrząc na te taśmociągi, widzę przyszłość polskiej logistyki. Inwestycja w automatyzację pozwoliła nam zwiększyć wydajność kompletacji o 40%, co bezpośrednio przekłada się na zadowolenie naszych Klientów."</p>
+                <p style="margin: 10px 0 0 0; font-weight: bold;">— Wiesław Puchacki, Prezes Zarządu</p>
+            </div>
+        </div>
+        
+        <a href="aktualnosci.html" class="btn-back"><i data-lucide="arrow-left"></i> Wróć do listy</a>
+    </article>
+    <script> lucide.createIcons(); </script>
+</body>
+</html>

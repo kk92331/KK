@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktualności | Total Logistics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; margin: 0; color: #333; line-height: 1.6; background: #f8fafc; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* HEADER */
+        header { background: white; padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo a { text-decoration: none; color: #333; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 5px; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #2563eb; }
+
+        /* LISTA NEWSÓW */
+        .news-header { text-align: center; padding: 60px 0 40px; }
+        .news-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
+        
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 80px; }
+        
+        .news-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .news-img { height: 200px; background-size: cover; background-position: center; }
+        .news-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .news-date { color: #888; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        .news-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; color: #1e293b; }
+        .read-more { margin-top: auto; color: #2563eb; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+
+        footer { background: #111; color: #888; padding: 40px 0; text-align: center; }
+        @media(max-width: 768px) { .news-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div>
+            <ul class="nav-links">
+                <li><a href="o-nas.html">O nas</a></li>
+                <li><a href="aktualnosci.html" class="active">Aktualności</a></li>
+                <li><a href="index.html#demo">Strefa Klienta</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="news-header">
+            <h1>Blog Logistyczny</h1>
+            <p>Najnowsze informacje z życia firmy i branży.</p>
+        </div>
+
+        <div class="news-grid">
+            
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="news-content">
+                    <span class="news-date">20 Stycznia 2026</span>
+                    <div class="news-title">Nowe rampy przeładunkowe w Błoniu</div>
+                    <p>Zakończyliśmy modernizację sektora B. Nowe doki zwiększą przepustowość o 30%.</p>
+                    <a href="news-rampy.html" class="read-more">Czytaj więcej <i data-lucide="arrow-right" size="16"></i></a>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1628135870373-c6467399895c?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="news-content">
+                    <span class="news-date">15 Stycznia 2026</span>
+                    <div class="news-title">Rekordowy rok: 14 200 obsłużonych aut</div>
+                    <p>Podsumowanie roku 2025. Zobacz nasze statystyki i plany na przyszłość.</p>
+                    <a href="news-rekord.html" class="read-more">Czytaj więcej <i data-lucide="arrow-right" size="16"></i></a>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="news-content">
+                    <span class="news-date">02 Stycznia 2026</span>
+                    <div class="news-title">Otwarcie magazynu wideo</div>
+                    <p>Zobacz relację wideo z otwarcia naszej nowej hali wysokiego składowania.</p>
+                    <a href="news-otwarcie.html" class="read-more">Czytaj więcej <i data-lucide="arrow-right" size="16"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Total Logistics.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nowe Rampy | Total Logistics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; color: #333; margin: 0; line-height: 1.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* HEADER */
+        header { background: white; padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo a { text-decoration: none; color: #333; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 5px; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: #2563eb; }
+        
+        /* ARTYKUŁ */
+        .article-container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        
+        /* ZDJĘCIE Z AI (Europejski TIR) */
+        .article-img { width: 100%; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 15px 0; }
+        
+        /* STYL CYTATU PREZESA */
+        .ceo-quote { 
+            background: #f1f5f9; border-left: 5px solid #2563eb; padding: 25px; 
+            margin: 30px 0; font-style: italic; color: #334155;
+        }
+        .ceo-name { display: block; margin-top: 15px; font-weight: bold; font-style: normal; color: #1e293b; }
+
+        .btn-back { display: inline-flex; align-items: center; gap: 5px; margin-top: 40px; text-decoration: none; color: #2563eb; font-weight: bold; transition: 0.3s; }
+        .btn-back:hover { text-decoration: underline; }
+        @media(max-width: 768px) { .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div>
+            <ul class="nav-links">
+                <li><a href="o-nas.html">O nas</a></li>
+                <li><a href="aktualnosci.html" style="color: #2563eb;">Aktualności</a></li>
+                <li><a href="index.html#demo">Strefa Klienta</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <article class="article-container">
+        <span style="color: #888; font-weight: bold; letter-spacing: 1px;">INWESTYCJE STRATEGICZNE</span>
+        <h1>Dwie nowe rampy zwiększają przepustowość centrum w Błoniu o 30%</h1>
+        
+        <img src="https://image.pollinations.ai/prompt/modern%20white%20european%20semi-truck%20with%20trailer%20docked%20at%20a%20loading%20ramp%20of%20a%20large%20warehouse%20building%20daylight%20professional%20photo?width=1200&height=600&nologo=true" alt="Europejski TIR pod rampą" class="article-img">
+        
+        <div class="content">
+            <p>Z przyjemnością informujemy o finalizacji kluczowego etapu rozbudowy infrastruktury w naszym flagowym centrum dystrybucyjnym. Oddanie do użytku dwóch nowoczesnych doków załadowczych w sektorze B to nie tylko zwiększenie metrażu, ale przede wszystkim <strong>strategiczna optymalizacja przepływów towarowych</strong>.</p>
+            
+            <p>Inwestycja ta jest bezpośrednią odpowiedzią na dynamicznie rosnące wolumeny naszych Klientów z sektora e-commerce. Nowe stanowiska pozwalają nam na implementację bardziej elastycznych modeli awizacji (slot booking) oraz znaczące skrócenie czasu "lead time" w procesach in-bound i out-bound.</p>
+
+            <div class="ceo-quote">
+                "W dzisiejszym turbulentnym otoczeniu rynkowym, elastyczność operacyjna to waluta nadrzędna. Rozbudowa strefy przyjęć to nasza inwestycja w Państwa spokój i pewność, że Total Logistics jest partnerem gotowym na skalowanie biznesu w trybie 'on-demand'. Dziękujemy za zaufanie, które motywuje nas do ciągłego podnoszenia poprzeczki."
+                <span class="ceo-name">— Wiesław Puchacki, Prezes Zarządu Total Logistics</span>
+            </div>
+
+            <p>Nowe doki zostały wyposażone w technologię spełniającą najwyższe standardy bezpieczeństwa i efektywności energetycznej:</p>
+            <ul>
+                <li>Hydrauliczne rampy najazdowe z teleskopową wargą.</li>
+                <li>Termoizolacyjne fartuchy uszczelniające (zmniejszenie strat ciepła o 40%).</li>
+                <li>Zintegrowany system sygnalizacji świetlnej dla kierowców i operatorów.</li>
+            </ul>
+        </div>
+        <a href="aktualnosci.html" class="btn-back"><i data-lucide="arrow-left"></i> Wróć do listy aktualności</a>
+    </article>
+    <script> lucide.createIcons(); </script>
+</body>
+</html>

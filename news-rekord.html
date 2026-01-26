@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekord Logistyczny | Total Logistics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; color: #333; margin: 0; line-height: 1.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* HEADER */
+        header { background: white; padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo a { text-decoration: none; color: #333; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 5px; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: #2563eb; }
+        
+        /* ARTYKUŁ */
+        .article-container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        
+        /* ZDJĘCIE WYGENEROWANE PRZEZ AI */
+        img { width: 100%; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 10px 0 20px 0; line-height: 1.2; }
+
+        /* TEKST KORPORACYJNY */
+        .highlight-text { 
+            background: #eff6ff; border-left: 5px solid #2563eb; padding: 20px; 
+            margin: 30px 0; font-style: italic; color: #1e293b;
+        }
+
+        /* WYKRES */
+        .chart-wrapper { background: #f8fafc; padding: 30px; border-radius: 10px; border: 1px solid #e2e8f0; margin-top: 30px; }
+        .chart-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .chart-section-title { font-weight: bold; margin-bottom: 15px; color: #64748b; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        .bar-row { display: flex; align-items: center; margin-bottom: 12px; }
+        .bar-label { width: 40px; font-weight: bold; font-size: 0.85rem; }
+        .bar-track { flex-grow: 1; background: #e2e8f0; height: 20px; border-radius: 4px; overflow: hidden; }
+        .bar-fill { 
+            height: 100%; background: #2563eb; color: white; text-align: right; 
+            padding-right: 8px; font-size: 0.75rem; line-height: 20px; font-weight: bold; white-space: nowrap;
+        }
+        .bar-fill.record { background: #16a34a; }
+
+        .btn-back { display: inline-flex; align-items: center; gap: 5px; margin-top: 40px; text-decoration: none; color: #2563eb; font-weight: bold; transition: 0.3s; }
+        .btn-back:hover { color: #1d4ed8; text-decoration: underline; }
+
+        @media(max-width: 768px) { 
+            .nav-links { display: none; } 
+            .chart-columns { grid-template-columns: 1fr; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div>
+            <ul class="nav-links">
+                <li><a href="o-nas.html">O nas</a></li>
+                <li><a href="aktualnosci.html" style="color: #2563eb;">Aktualności</a></li>
+                <li><a href="index.html#demo">Strefa Klienta</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <article class="article-container">
+        <span style="color: #888; font-weight: bold; letter-spacing: 1px; font-size: 0.9rem;">RAPORT ROCZNY 2025</span>
+        <h1>Historyczny sukces: Przekroczyliśmy barierę 14 000 operacji logistycznych</h1>
+        
+        <img src="https://image.pollinations.ai/prompt/male%20warehouse%20manager%20in%20safety%20vest%20and%20hard%20hat%20holding%20a%20tablet%20looking%20at%20data%20in%20a%20large%20modern%20logistics%20warehouse%20full%20of%20pallets%20professional%20photo?width=1200&height=600&nologo=true" alt="Manager magazynu z tabletem">
+        
+        <div class="content">
+            <p>Rok 2025 zapisał się złotymi zgłoskami w historii Total Logistics. Osiągnięty wynik to nie tylko suche statystyki – to dowód na skalowalność naszych procesów i efektywność wdrożonych strategii optymalizacyjnych.</p>
+
+            <div class="highlight-text">
+                "Ten spektakularny sukces biznesowy nie byłby możliwy bez fundamentalnej wartości naszej firmy – <strong>zaufania naszych Klientów</strong>. To Wasze wyzwania napędzają naszą innowacyjność, a Wasz rozwój jest naszym priorytetem. Dziękujemy, że wspólnie możemy budować logistykę przyszłości."
+                <br><br>
+                <small>— Zarząd Total Logistics</small>
+            </div>
+
+            <p>Konsekwentnie realizujemy misję dostarczania usług najwyższej jakości. Poniższe zestawienie prezentuje dynamikę wzrostu operacji (załadunki/rozładunki) w podziale na miesiące:</p>
+
+            <div class="chart-wrapper">
+                <div class="chart-columns">
+                    <div>
+                        <div class="chart-section-title">I Półrocze</div>
+                        <div class="bar-row"><span class="bar-label">STY</span><div class="bar-track"><div class="bar-fill" style="width: 55%;">820</div></div></div>
+                        <div class="bar-row"><span class="bar-label">LUT</span><div class="bar-track"><div class="bar-fill" style="width: 58%;">880</div></div></div>
+                        <div class="bar-row"><span class="bar-label">MAR</span><div class="bar-track"><div class="bar-fill" style="width: 65%;">950</div></div></div>
+                        <div class="bar-row"><span class="bar-label">KWI</span><div class="bar-track"><div class="bar-fill" style="width: 70%;">1050</div></div></div>
+                        <div class="bar-row"><span class="bar-label">MAJ</span><div class="bar-track"><div class="bar-fill" style="width: 75%;">1120</div></div></div>
+                        <div class="bar-row"><span class="bar-label">CZE</span><div class="bar-track"><div class="bar-fill" style="width: 78%;">1180</div></div></div>
+                    </div>
+                    <div>
+                        <div class="chart-section-title">II Półrocze</div>
+                        <div class="bar-row"><span class="bar-label">LIP</span><div class="bar-track"><div class="bar-fill" style="width: 80%;">1200</div></div></div>
+                        <div class="bar-row"><span class="bar-label">SIE</span><div class="bar-track"><div class="bar-fill" style="width: 76%;">1150</div></div></div>
+                        <div class="bar-row"><span class="bar-label">WRZ</span><div class="bar-track"><div class="bar-fill" style="width: 85%;">1280</div></div></div>
+                        <div class="bar-row"><span class="bar-label">PAŹ</span><div class="bar-track"><div class="bar-fill" style="width: 90%;">1350</div></div></div>
+                        <div class="bar-row"><span class="bar-label">LIS</span><div class="bar-track"><div class="bar-fill" style="width: 94%;">1410</div></div></div>
+                        <div class="bar-row"><span class="bar-label">GRU</span><div class="bar-track"><div class="bar-fill record" style="width: 100%;">1500 REKORD</div></div></div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">*Liczba obsłużonych pojazdów ciężarowych (TIR)</p>
+            </div>
+        </div>
+        
+        <a href="aktualnosci.html" class="btn-back"><i data-lucide="arrow-left"></i> Wróć do listy aktualności</a>
+    </article>
+    
+    <script> lucide.createIcons(); </script>
+</body>
+</html>

@@ -3,88 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Total Logistics | Błonie Sochaczewska 96c</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Total Logistics | Strona Główna</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* --- BAZA --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; color: #1e293b; line-height: 1.6; background-color: #fff; transition: 0.3s; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+        button { cursor: pointer; font-family: inherit; }
+
+        /* --- HEADER & NAV (Spójne z Kontakt) --- */
+        header { background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo a { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 800; color: #0f172a; }
+        
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a:not(.btn-primary), .nav-links button { 
+            color: #475569; font-weight: 600; font-size: 0.9rem; background: none; border: none; 
+            display: flex; align-items: center; gap: 5px;
+        }
+        .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
+        
+        /* Przycisk Kontakt wyróżniony */
+        .btn-primary { background: #2563eb; color: white !important; padding: 10px 24px; border-radius: 6px; font-weight: 600; }
+        .btn-primary:hover { background: #1d4ed8; }
+
+        /* --- WCAG --- */
+        body.contrast-mode { background-color: #000 !important; color: #ffff00 !important; }
+        body.contrast-mode * { background-color: #000 !important; color: #ffff00 !important; border-color: #ffff00 !important; box-shadow: none !important; }
+        body.contrast-mode img { filter: grayscale(100%) contrast(120%); opacity: 0.8; }
+        body.contrast-mode .hero { background: #000; } 
+
+        /* --- HERO --- */
+        .hero { 
+            background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.7)), 
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); 
+            background-size: cover; background-position: center;
+            height: 85vh; display: flex; align-items: center; justify-content: center; 
+            text-align: center; color: white; 
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: white; margin-bottom: 20px; }
+        
+        /* --- USŁUGI --- */
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 80px 0; }
+        .service-card { padding: 40px; border: 1px solid #e2e8f0; border-radius: 12px; text-align: center; transition: 0.3s; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: #2563eb; }
+        .service-card h3 { margin: 20px 0 10px 0; font-size: 1.4rem; }
+        .service-card p { color: #64748b; }
+
+        /* --- MODAL --- */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-box { background: white; padding: 40px; border-radius: 12px; width: 100%; max-width: 400px; position: relative; text-align: center; }
+        .login-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 6px; }
+        .login-btn { width: 100%; background: #2563eb; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+
+        /* --- FOOTER --- */
+        footer { background: #0f172a; color: white; padding: 60px 0 20px 0; margin-top: 50px; }
+        .footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; color: #e2e8f0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #94a3b8; }
+        .footer-col ul li a:hover { color: white; }
+        .copyright { border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #64748b; font-size: 0.9rem; }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; } /* Na mobilu ukrywamy (do zrobienia hamburger menu w przyszłości) */
+            .services-grid, .footer-content { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
+
+    <div class="modal-overlay" id="clientModal">
+        <div class="modal-box">
+            <button style="position:absolute; top:15px; right:15px; border:none; background:none; font-size:1.5rem; cursor:pointer;" onclick="toggleModal()">×</button>
+            <div style="margin-bottom: 20px; color: #2563eb;"><i data-lucide="lock" size="48"></i></div>
+            <h3>Strefa Klienta</h3>
+            <p style="margin-bottom: 20px; color: #64748b; font-size: 0.9rem;">Dostęp do WMS / Tracking</p>
+            <form onsubmit="event.preventDefault();"><input type="text" class="login-input" placeholder="Login"><input type="password" class="login-input" placeholder="Hasło"><button class="login-btn">Zaloguj się</button></form>
+        </div>
+    </div>
+
     <header>
-       <ul class="nav-links">
-    <li><a href="o-nas.html">O nas</a></li>
-    <li><a href="index.html#demo">Dostępność</a></li> <li><a href="index.html#contact">Kontakt</a></li>
-</ul>
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="o-nas.html">O nas</a></li>
+                <li><a href="#uslugi">Usługi</a></li>
+                <li><a href="aktualnosci.html">Aktualności</a></li>
+                <li><a href="dostepnosc.html" style="color: #2563eb; font-weight: 800;">Wolne Powierzchnie</a></li>
+                
+                <li>
+                    <button onclick="toggleModal()" title="Strefa Klienta">
+                        <i data-lucide="user-circle" size="20"></i> Klient
+                    </button>
+                </li>
+                <li>
+                    <button onclick="toggleContrast()" title="Kontrast">
+                        <i data-lucide="eye" size="20"></i>
+                    </button>
+                </li>
+                
+                <li><a href="kontakt.html" class="btn-primary">Kontakt</a></li>
+            </ul>
+        </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="container" data-reveal>
-            <span class="badge">BŁONIE | SOCHACZEWSKA 96C</span>
-            <h1>Logistyka Klasy A<span> w Błoniu</span></h1>
-            <p>Strategiczny hub przy autostradzie A2. Nowoczesna przestrzeń i kompletacja towarów.</p>
-            <a href="#contact" class="btn-primary">Poproś o wycenę</a>
-        </div>
-    </section>
-
-    <section id="about" class="section bg-dark">
         <div class="container">
-            <div class="logo-wrapper">
-                <span>SAMSUNG</span> <span>ZALANDO</span> <span>DHL</span> <span>LPP</span> <span>IKEA</span>
-            </div>
-            <div class="grid-3 mt-40">
-                <div class="testi-card" data-reveal>
-                    <div class="stars">★★★★★</div>
-                    <p>"Lokalizacja na Sochaczewskiej 96c to dla nas klucz do sukcesu w dystrybucji."</p>
-                    <small>Marek Wiśniewski, E-com Group</small>
-                </div>
-                <div class="testi-card" data-reveal>
-                    <div class="stars">★★★★★</div>
-                    <p>"Świetna obsługa etykietowania i elastyczne stawki za m²."</p>
-                    <small>Anna Nowak, Logistics Manager</small>
-                </div>
+            <h1>Logistyka Przyszłości</h1>
+            <p style="font-size: 1.2rem; color: #cbd5e1; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Centrum dystrybucyjne klasy A+. Optymalizuj koszty, przyspiesz dostawy.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="dostepnosc.html" class="btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">Sprawdź Dostępność</a>
+                <a href="kontakt.html" style="padding: 15px 40px; background: white; color: #1e293b; border-radius: 6px; font-weight: 600;">Napisz do nas</a>
             </div>
         </div>
     </section>
 
-    <section id="demo" class="section container">
-        <h2 class="centered">Zarządzaj swoją przestrzenią</h2>
-        <div class="grid-2 mt-40">
-            <div class="modern-form">
-                <div class="form-group">
-                    <label>Nazwa dostawy/klienta</label>
-                    <input type="text" id="itemName" placeholder="np. Elektronika">
-                </div>
-                <div class="form-group">
-                    <label>Metraż (m²)</label>
-                    <input type="number" id="itemSize" placeholder="200">
-                </div>
-                <button onclick="addUnit()" class="btn-primary w-100">DODAJ DO HALI</button>
-                <div class="mt-20">
-                    Wolne miejsce: <strong id="free-space">5000</strong> m²
-                    <div class="progress-container"><div id="progress-bar"></div></div>
-                </div>
+    <section class="container" id="uslugi">
+        <div class="services-grid">
+            <div class="service-card">
+                <div style="color: #2563eb; margin-bottom: 15px;"><i data-lucide="warehouse" size="40"></i></div>
+                <h3>Magazynowanie</h3>
+                <p>25 000 miejsc paletowych w systemie wysokiego składowania. Obsługa e-commerce i retail.</p>
             </div>
-            <div id="warehouse-grid" class="warehouse-grid shadow-effect"></div>
-        </div>
-    </section>
-
-    <section id="contact" class="section bg-grey">
-        <div class="container grid-2">
-            <div class="map-box">
-                <iframe width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.646738981442!2d20.59648231580556!3d52.20436497975442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471946001d2361b7%3A0x6b9c9f6d7092923c!2sSochaczewska%2096C%2C%2005-870%20B%C5%82onie!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl"></iframe>
+            <div class="service-card">
+                <div style="color: #2563eb; margin-bottom: 15px;"><i data-lucide="truck" size="40"></i></div>
+                <h3>Transport</h3>
+                <p>Flota własna i spedycja międzynarodowa. Dostawy FTL i LTL w całej Europie.</p>
             </div>
-            <div class="modern-form">
-                <h2>Kontakt</h2>
-                <form onsubmit="event.preventDefault(); alert('Wysłano!');">
-                    <input type="text" placeholder="Firma" required class="mt-10">
-                    <input type="email" placeholder="E-mail" required class="mt-10">
-                    <textarea placeholder="Twoje zapytanie" class="mt-10"></textarea>
-                    <button type="submit" class="btn-primary w-100 mt-20">WYŚLIJ</button>
-                </form>
+            <div class="service-card">
+                <div style="color: #2563eb; margin-bottom: 15px;"><i data-lucide="package-check" size="40"></i></div>
+                <h3>Co-packing</h3>
+                <p>Etykietowanie, foliowanie, tworzenie zestawów promocyjnych (VAS).</p>
             </div>
         </div>
     </section>
+    
+    <section class="container" style="padding-bottom: 60px;">
+        <h2 style="margin-bottom: 30px; font-family: 'Playfair Display', serif; font-size: 2.5rem;">Aktualności</h2>
+        <div style="background: #f8fafc; padding: 30px; border-radius: 12px; display: flex; gap: 30px; align-items: center; border: 1px solid #e2e8f0;">
+             <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" style="border-radius: 8px; width: 150px; height: 150px; object-fit: cover;">
+             <div>
+                 <span style="font-size: 0.8rem; font-weight: 700; color: #2563eb; text-transform: uppercase;">Z życia firmy</span>
+                 <h3 style="margin: 5px 0 10px 0; font-size: 1.5rem;">Rozbudowa Magazynu</h3>
+                 <p style="color: #64748b; margin-bottom: 15px;">Uruchomiliśmy nową halę o powierzchni 5000 mkw dedykowaną dla branży spożywczej.</p>
+                 <a href="#" style="color: #2563eb; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                    Czytaj więcej <i data-lucide="arrow-right" size="16"></i>
+                 </a>
+             </div>
+        </div>
+    </section>
 
-    <script src="script.js"></script>
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>Total Logistics</h4>
+                <p style="color: #94a3b8; font-size: 0.9rem;">
+                    Lider logistyki kontraktowej.<br>
+                    Twoje towary, nasza pasja.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Nawigacja</h4>
+                <ul>
+                    <li><a href="o-nas.html">O nas</a></li>
+                    <li><a href="dostepnosc.html">Wolne powierzchnie</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="#" onclick="toggleModal()">Strefa Klienta</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Szybki Kontakt</h4>
+                <ul>
+                    <li style="color: #94a3b8;">ul. Logistyczna 1, Błonie</li>
+                    <li><a href="tel:+48221234567">+48 22 123 45 67</a></li>
+                    <li><a href="mailto:biuro@total-logistics.pl">biuro@total-logistics.pl</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Total Logistics Sp. z o.o. Wszelkie prawa zastrzeżone.
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        function toggleModal() { 
+            const m = document.getElementById('clientModal'); 
+            m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; 
+        }
+        document.getElementById('clientModal').addEventListener('click', function(e) { 
+            if(e.target===this) toggleModal(); 
+        });
+        function toggleContrast() { 
+            document.body.classList.toggle('contrast-mode'); 
+        }
+    </script>
 </body>
 </html>
