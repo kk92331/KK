@@ -3,101 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Nas | Historia i Zespół</title>
+    <title>O nas | Total Logistics</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* --- BAZA (Wspólna) --- */
+        /* --- BAZA --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; color: #1e293b; line-height: 1.6; background-color: #fff; transition: 0.3s; }
+        body { font-family: 'Montserrat', sans-serif; color: #1e293b; line-height: 1.6; background-color: #f8fafc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         a { text-decoration: none; transition: 0.3s; }
         ul { list-style: none; }
         button { cursor: pointer; font-family: inherit; }
 
-        /* --- WCAG & MODAL --- */
-        body.contrast-mode { background-color: #000 !important; color: #ffff00 !important; }
-        body.contrast-mode * { background-color: #000 !important; color: #ffff00 !important; border-color: #ffff00 !important; box-shadow: none !important; }
-        body.contrast-mode img { filter: grayscale(100%) contrast(120%); opacity: 0.8; }
-        body.contrast-mode .timeline-item::after { background: #ffff00 !important; }
+        /* --- NAV & HEADER (UJEDNOLICONA) --- */
+        header { background: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo a { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 800; color: #0f172a; }
+        
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a:not(.btn-primary), .nav-links button { 
+            color: #475569; font-weight: 600; background: none; border: none; font-size: 0.9rem; 
+            display: flex; align-items: center; gap: 5px;
+        }
+        .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
+        .btn-primary { background: #2563eb; color: white !important; padding: 10px 24px; border-radius: 6px; font-weight: 600; }
+        .btn-primary:hover { background: #1d4ed8; }
 
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        /* --- MODAL --- */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .modal-box { background: white; padding: 40px; border-radius: 12px; width: 100%; max-width: 400px; position: relative; text-align: center; }
         .login-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 6px; }
         .login-btn { width: 100%; background: #2563eb; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 700; cursor: pointer; }
-
-        /* --- HEADER --- */
-        header { background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo a { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 800; color: #0f172a; }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a, .nav-links button { color: #475569; font-weight: 600; background: none; border: none; font-size: 0.95rem; }
-        .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
-        .btn-primary { background: #2563eb; color: white !important; padding: 10px 24px; border-radius: 6px; font-weight: 600; }
         
+        body.contrast-mode { background-color: #000 !important; color: #ffff00 !important; }
+        body.contrast-mode * { background-color: #000 !important; color: #ffff00 !important; border-color: #ffff00 !important; box-shadow: none !important; }
+
         /* --- HERO --- */
-        .about-hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.7)), 
-                        url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            height: 60vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; color: white; margin-bottom: 80px;
-        }
-        .about-hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 20px; }
-        .about-hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #cbd5e1; }
+        .about-hero { background: #1e293b; color: white; padding: 80px 0; text-align: center; margin-bottom: 60px; }
+        .about-hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 20px; }
+        .about-hero p { max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: #cbd5e1; }
 
-        /* --- HISTORIA (TIMELINE) --- */
-        .history-section { max-width: 800px; margin: 0 auto 100px auto; padding: 0 20px; }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #0f172a; }
+        /* --- HISTORIA --- */
+        .history-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 80px; }
+        .history-content h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 25px; color: #0f172a; }
+        .history-content p { margin-bottom: 15px; color: #475569; text-align: justify; }
+        .history-img img { width: 100%; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        /* --- STATYSTYKI --- */
+        .stats-section { background: white; padding: 60px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; margin-bottom: 80px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
+        .stat-item h3 { font-size: 3rem; color: #2563eb; font-weight: 800; margin-bottom: 5px; }
+        .stat-item p { color: #64748b; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+
+        /* --- WARTOŚCI --- */
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 80px; }
+        .value-card { background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; border: 1px solid #e2e8f0; }
+        .value-card:hover { transform: translateY(-5px); border-color: #2563eb; }
+        .value-icon { color: #2563eb; margin-bottom: 20px; }
+        .value-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
+        .value-card p { color: #64748b; font-size: 0.95rem; }
+
+        /* --- ZESPÓŁ (NOWA SEKCJA) --- */
+        .team-section { margin-bottom: 80px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 15px; }
         
-        .timeline { border-left: 4px solid #e2e8f0; padding-left: 40px; position: relative; }
-        .timeline-item { margin-bottom: 50px; position: relative; }
-        .timeline-item::after { 
-            content: ''; position: absolute; left: -50px; top: 5px; width: 16px; height: 16px; 
-            background: #2563eb; border-radius: 50%; border: 4px solid white; box-shadow: 0 0 0 2px #e2e8f0;
-        }
-        .timeline-year { font-weight: 800; font-size: 1.2rem; color: #2563eb; display: block; margin-bottom: 5px; }
-        .timeline-content h3 { font-size: 1.3rem; margin-bottom: 10px; }
-        .timeline-content p { color: #64748b; }
-
-        /* --- ZESPÓŁ (GRID) --- */
-        .team-section { background: #f8fafc; padding: 100px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
-        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
-        .team-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); transition: 0.3s; }
-        .team-card:hover { transform: translateY(-10px); }
-        .team-img { width: 100%; height: 300px; object-fit: cover; object-position: top; filter: grayscale(20%); transition: 0.3s; }
+        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .team-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; }
+        .team-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .team-img { width: 100%; height: 300px; object-fit: cover; filter: grayscale(20%); transition: 0.3s; }
         .team-card:hover .team-img { filter: grayscale(0%); }
-        .team-info { padding: 25px; text-align: center; }
-        .team-role { font-size: 0.75rem; font-weight: 700; color: #2563eb; letter-spacing: 1px; text-transform: uppercase; }
-        .team-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin: 10px 0; }
-
-        /* --- CTA / KONTAKT (To, czego brakowało) --- */
-        .cta-section { 
-            background: #1e293b; color: white; padding: 80px 0; text-align: center; 
-            margin-top: 0; /* Sticky to footer */
-        }
-        .cta-box { max-width: 700px; margin: 0 auto; }
-        .cta-box h2 { font-family: 'Playfair Display', serif; color: white; font-size: 2.2rem; margin-bottom: 20px; }
-        .cta-btn { 
-            display: inline-block; background: #2563eb; color: white; padding: 18px 40px; 
-            border-radius: 50px; font-weight: 700; font-size: 1.1rem; margin-top: 30px; 
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); transition: 0.3s;
-        }
-        .cta-btn:hover { background: #3b82f6; transform: translateY(-3px); }
+        
+        .team-info { padding: 20px; text-align: center; }
+        .team-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; color: #0f172a; }
+        .team-role { color: #2563eb; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+        .team-contact { border-top: 1px solid #f1f5f9; padding-top: 15px; display: flex; justify-content: center; gap: 15px; color: #94a3b8; }
+        .team-contact a { color: #94a3b8; }
+        .team-contact a:hover { color: #2563eb; }
 
         /* --- FOOTER --- */
-        footer { background: #0f172a; color: white; padding: 60px 0 20px 0; text-align: center; }
-        .copyright { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; color: #64748b; font-size: 0.9rem; }
+        footer { background: #0f172a; color: white; padding: 60px 0 20px 0; margin-top: auto; }
+        .footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; color: #e2e8f0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #94a3b8; }
+        .footer-col ul li a:hover { color: white; }
+        .copyright { border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #64748b; font-size: 0.9rem; }
 
-        @media (max-width: 900px) {
-            .team-grid { grid-template-columns: 1fr; }
-            .timeline { padding-left: 20px; }
-            .timeline-item::after { left: -29px; }
+        @media (max-width: 1000px) {
+            .history-grid, .stats-grid, .values-grid, .team-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; } 
             .nav-links { display: none; }
+        }
+        @media (max-width: 600px) {
+            .team-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -108,30 +109,21 @@
             <button style="position:absolute; top:15px; right:15px; border:none; background:none; font-size:1.5rem; cursor:pointer;" onclick="toggleModal()">×</button>
             <div style="margin-bottom: 20px; color: #2563eb;"><i data-lucide="lock" size="48"></i></div>
             <h3>Strefa Klienta</h3>
-            <p style="margin-bottom: 20px; color: #64748b; font-size: 0.9rem;">WMS / Tracking</p>
             <form onsubmit="event.preventDefault();"><input type="text" class="login-input" placeholder="Login"><input type="password" class="login-input" placeholder="Hasło"><button class="login-btn">Zaloguj się</button></form>
         </div>
     </div>
 
     <header>
         <nav class="container">
-            <div class="logo">
-                <a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a>
-            </div>
+            <div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div>
             <ul class="nav-links">
-                <li><a href="o-nas.html" style="color: #2563eb;">O nas</a></li>
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="uslugi.html">Usługi</a></li>
+                <li><a href="o-nas.html" style="color: #2563eb; font-weight: 800;">O nas</a></li>
                 <li><a href="aktualnosci.html">Aktualności</a></li>
                 <li><a href="dostepnosc.html" style="color: #2563eb; font-weight: 800;">Wolne Powierzchnie</a></li>
-                <li>
-                    <button onclick="toggleModal()" style="display:flex; align-items:center; gap:6px;">
-                        <i data-lucide="user-circle" size="18"></i> Strefa Klienta
-                    </button>
-                </li>
-                <li>
-                    <button onclick="toggleContrast()" style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:2px solid #e2e8f0; color:#2563eb;">
-                        <i data-lucide="eye" size="20"></i>
-                    </button>
-                </li>
+                <li><button onclick="toggleModal()"><i data-lucide="user-circle"></i> Klient</button></li>
+                <li><button onclick="toggleContrast()"><i data-lucide="eye"></i></button></li>
                 <li><a href="kontakt.html" class="btn-primary">Kontakt</a></li>
             </ul>
         </nav>
@@ -139,132 +131,155 @@
 
     <section class="about-hero">
         <div class="container">
-            <h1>Więcej niż magazyn.</h1>
-            <p>Od rodzinnej firmy transportowej do lidera logistyki kontraktowej w Europie Środkowej. Poznaj naszą historię i ludzi, którzy za nią stoją.</p>
+            <h1>O nas</h1>
+            <p>Łączymy tradycję rzetelnego transportu z nowoczesnymi technologiami zarządzania magazynem. Poznaj zespół, który dba o Twój biznes.</p>
         </div>
     </section>
 
-    <section class="history-section">
-        <div class="section-title">
-            <h2>Nasza Droga</h2>
-            <p style="color: #64748b; margin-top: 10px;">Budujemy relacje od ponad 15 lat.</p>
-        </div>
-        
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="timeline-year">2010</span>
-                <div class="timeline-content">
-                    <h3>Początki w garażu</h3>
-                    <p>Wiesław Puchacki kupuje pierwsze dwa samochody dostawcze. Firma działa lokalnie, obsługując małe hurtownie spożywcze.</p>
-                </div>
+    <div class="container">
+        <div class="history-grid">
+            <div class="history-content">
+                <h2>Ponad 20 lat doświadczenia</h2>
+                <p>Historia Total Logistics to droga od małej firmy transportowej założonej w 2004 roku, dysponującej zaledwie trzema pojazdami, do jednego z liderów logistyki kontraktowej w regionie Mazowsza.</p>
+                <p>Kluczowym momentem w naszym rozwoju był rok 2015, kiedy otworzyliśmy nasze pierwsze centrum dystrybucyjne w Błoniu. Zrozumieliśmy wtedy, że nasi Klienci potrzebują nie tylko przewozu towaru, ale kompleksowej opieki nad całym łańcuchem dostaw.</p>
+                <p>Dziś stawiamy na technologię. Wdrożony w 2024 roku autorski system WMS pozwala nam realizować wysyłki dla branży e-commerce z dokładnością 99.9%, a nasza flota spełnia najbardziej rygorystyczne normy emisji spalin Euro 6.</p>
             </div>
-            <div class="timeline-item">
-                <span class="timeline-year">2015</span>
-                <div class="timeline-content">
-                    <h3>Pierwszy magazyn</h3>
-                    <p>Otwieramy halę o powierzchni 2000 m². Wprowadzamy pierwszy prosty system zarządzania stanami magazynowymi.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-year">2020</span>
-                <div class="timeline-content">
-                    <h3>Ekspansja i Hub Błonie</h3>
-                    <p>Przełomowy moment. Inwestycja w centrum dystrybucyjne klasy A+ (25 000 m²) oraz wdrożenie zaawansowanego systemu WMS.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-year">2025/2026</span>
-                <div class="timeline-content">
-                    <h3>Automatyzacja i Nowy Zarząd</h3>
-                    <p>Dołącza do nas Marek Nowicki jako COO. Stawiamy na robotykę i zieloną energię (fotowoltaika na dachu magazynu).</p>
-                </div>
+            <div class="history-img">
+                <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=800&q=80" alt="Magazyn wnętrze">
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="team-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Zarząd i Eksperci</h2>
-                <p style="color: #64748b;">Ludzie, którzy dbają o Twoje palety 24/7.</p>
+    <div class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3>50k</h3>
+                <p>m² powierzchni magazynowej</p>
             </div>
-            
+            <div class="stat-item">
+                <h3>150+</h3>
+                <p>Własnych pojazdów</p>
+            </div>
+            <div class="stat-item">
+                <h3>200+</h3>
+                <p>Zadowolonych Klientów B2B</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Monitoring i Ochrona</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section-header">
+            <h2>Dlaczego my?</h2>
+            <p style="color: #64748b;">Trzy filary naszej działalności.</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i data-lucide="shield-check" size="48"></i></div>
+                <h3>Bezpieczeństwo</h3>
+                <p>Twoje towary są ubezpieczone na każdym etapie. Posiadamy certyfikat ISO 28000 oraz stały monitoring wizyjny stref załadunku.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i data-lucide="zap" size="48"></i></div>
+                <h3>Elastyczność</h3>
+                <p>Sezonowy pik sprzedażowy? Nie ma problemu. Skalujemy powierzchnię i zasoby ludzkie w zależności od Twoich aktualnych potrzeb.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i data-lucide="monitor-smartphone" size="48"></i></div>
+                <h3>Technologia</h3>
+                <p>Pełna integracja API z Twoim sklepem (Shopify, Magento, WooCommerce). Śledzenie stanów magazynowych w czasie rzeczywistym.</p>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <div class="section-header">
+                <h2>Zarząd i Zespół</h2>
+                <p style="color: #64748b;">Ludzie, którzy stoją za sukcesem Twoich dostaw.</p>
+            </div>
             <div class="team-grid">
                 <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1556157382-97eda2d6229b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="team-img">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop" class="team-img" alt="Prezes">
                     <div class="team-info">
+                        <div class="team-name">Jan Kowalski</div>
                         <span class="team-role">Prezes Zarządu</span>
-                        <h3 class="team-name">Wiesław Puchacki</h3>
-                        <p style="font-size:0.9rem; color:#64748b;">Założyciel. Wizjoner. Zna każdy kąt w magazynie.</p>
+                        <div class="team-contact">
+                            <a href="#"><i data-lucide="linkedin"></i></a>
+                            <a href="#"><i data-lucide="mail"></i></a>
+                        </div>
                     </div>
                 </div>
-
                 <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="team-img">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop" class="team-img" alt="Dyrektor Operacyjny">
                     <div class="team-info">
+                        <div class="team-name">Anna Nowak</div>
                         <span class="team-role">Dyrektor Operacyjny</span>
-                        <h3 class="team-name">Marek Nowicki</h3>
-                        <p style="font-size:0.9rem; color:#64748b;">Ekspert od automatyzacji procesów i WMS.</p>
+                        <div class="team-contact">
+                            <a href="#"><i data-lucide="linkedin"></i></a>
+                            <a href="#"><i data-lucide="mail"></i></a>
+                        </div>
                     </div>
                 </div>
-
                 <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="team-img">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=500&fit=crop" class="team-img" alt="Dyrektor Handlowy">
                     <div class="team-info">
-                        <span class="team-role">Head of Spedition</span>
-                        <h3 class="team-name">Anna Kowalska</h3>
-                        <p style="font-size:0.9rem; color:#64748b;">Zarządza flotą 40 ciężarówek w ruchu międzynarodowym.</p>
+                        <div class="team-name">Piotr Wiśniewski</div>
+                        <span class="team-role">Head of Sales</span>
+                        <div class="team-contact">
+                            <a href="#"><i data-lucide="linkedin"></i></a>
+                            <a href="#"><i data-lucide="mail"></i></a>
+                        </div>
                     </div>
                 </div>
-
                 <div class="team-card">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="team-img">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop" class="team-img" alt="Manager Magazynu">
                     <div class="team-info">
-                        <span class="team-role">Kierownik Magazynu</span>
-                        <h3 class="team-name">Tomasz Zięba</h3>
-                        <p style="font-size:0.9rem; color:#64748b;">Certyfikowany Black Belt Six Sigma. Porządek to jego drugie imię.</p>
+                        <div class="team-name">Katarzyna Wójcik</div>
+                        <span class="team-role">Warehouse Manager</span>
+                        <div class="team-contact">
+                            <a href="#"><i data-lucide="linkedin"></i></a>
+                            <a href="#"><i data-lucide="mail"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container cta-box">
-            <h2>Szukasz partnera, któremu możesz zaufać?</h2>
-            <p style="color: #cbd5e1; font-size: 1.1rem; margin-top: 15px;">
-                Nie trać czasu na puste obietnice. Skontaktuj się z nami, wypełnij krótką ankietę przedwdrożeniową i otrzymaj wycenę w 24h.
-            </p>
-            <a href="kontakt.html" class="cta-btn">
-                Przejdź do formularza i ankiety <i data-lucide="arrow-right" style="vertical-align: middle; margin-left: 5px;"></i>
-            </a>
-        </div>
-    </section>
+    </div>
 
     <footer>
-        <div class="container">
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem;">Total Logistics</h3>
-            <p style="color: #94a3b8;">Twój partner w biznesie.</p>
-            <div class="copyright">© 2026 Total Logistics Sp. z o.o.</div>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>Total Logistics</h4>
+                <p style="color: #94a3b8; font-size: 0.9rem;">Lider logistyki kontraktowej.<br>Twoje towary, nasza pasja.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Nawigacja</h4>
+                <ul>
+                    <li><a href="o-nas.html">O nas</a></li>
+                    <li><a href="uslugi.html">Usługi</a></li>
+                    <li><a href="dostepnosc.html">Wolne powierzchnie</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="#" onclick="toggleModal()">Strefa Klienta</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Szybki Kontakt</h4>
+                <ul>
+                    <li style="color: #94a3b8;">ul. Logistyczna 1, Błonie</li>
+                    <li><a href="tel:+48221234567">+48 22 123 45 67</a></li>
+                </ul>
+            </div>
         </div>
+        <div class="copyright">© 2026 Total Logistics Sp. z o.o.</div>
     </footer>
 
     <script>
         lucide.createIcons();
-        
-        // MODAL
-        function toggleModal() {
-            const m = document.getElementById('clientModal');
-            m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
-        }
-        document.getElementById('clientModal').addEventListener('click', function(e) { 
-            if(e.target === this) toggleModal(); 
-        });
-
-        // WCAG
-        function toggleContrast() { 
-            document.body.classList.toggle('contrast-mode'); 
-        }
+        function toggleModal() { const m = document.getElementById('clientModal'); m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; }
+        document.getElementById('clientModal').addEventListener('click', function(e) { if(e.target===this) toggleModal(); });
+        function toggleContrast() { document.body.classList.toggle('contrast-mode'); }
     </script>
 </body>
 </html>

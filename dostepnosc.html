@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolne Powierzchnie | Wycena</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Wolne Powierzchnie | Total Logistics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* STYLE BAZOWE (Te same co wyżej) */
+        /* --- BAZA I HEADER (JEDNOLITE) --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Montserrat', sans-serif; color: #1e293b; line-height: 1.6; background-color: #f8fafc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -15,42 +15,57 @@
         ul { list-style: none; }
         button { cursor: pointer; font-family: inherit; }
 
-        /* HEADER */
-        header { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 15px 0; margin-bottom: 40px; }
+        header { background: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo a { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 800; color: #0f172a; }
         .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a, .nav-links button { color: #475569; font-weight: 600; background: none; border: none; font-size: 0.95rem; }
+        .nav-links a:not(.btn-primary), .nav-links button { color: #475569; font-weight: 600; background: none; border: none; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
         .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
-        .btn-primary { background: #2563eb; color: white !important; padding: 10px 24px; border-radius: 6px; }
-        
-        /* WCAG & MODAL STYLES */
-        body.contrast-mode { background-color: #000 !important; color: #ffff00 !important; }
-        body.contrast-mode * { background-color: #000 !important; color: #ffff00 !important; border-color: #ffff00 !important; }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.8); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .btn-primary { background: #2563eb; color: white !important; padding: 10px 24px; border-radius: 6px; font-weight: 600; }
+        .btn-primary:hover { background: #1d4ed8; }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .modal-box { background: white; padding: 40px; border-radius: 12px; width: 100%; max-width: 400px; position: relative; text-align: center; }
         .login-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 6px; }
         .login-btn { width: 100%; background: #2563eb; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 700; cursor: pointer; }
 
-        /* SPECIFIC FOR THIS PAGE */
-        .layout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .warehouse-map { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .map-visual { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
-        .sector { height: 120px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 700; color: white; }
-        .sector.occupied { background: #cbd5e1; color: #64748b; }
-        .sector.free { background: #22c55e; cursor: pointer; transition: 0.3s; }
-        .sector.free:hover { transform: scale(1.02); background: #16a34a; }
+        body.contrast-mode { background-color: #000 !important; color: #ffff00 !important; }
+        body.contrast-mode * { background-color: #000 !important; color: #ffff00 !important; border-color: #ffff00 !important; box-shadow: none !important; }
+
+        /* PAGE SPECIFIC */
+        .page-hero { background: #1e293b; color: white; padding: 60px 0; text-align: center; margin-bottom: 40px; }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
         
-        .calculator-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1); position: sticky; top: 20px; }
-        .range-slider { width: 100%; margin: 15px 0; }
-        .result-box { background: #f1f5f9; padding: 20px; border-radius: 8px; text-align: center; margin-top: 30px; }
-        .price-value { font-size: 2.5rem; font-weight: 800; color: #2563eb; display: block; }
+        .stock-table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 60px; }
+        .stock-table th { background: #eff6ff; color: #1e3a8a; font-weight: 700; text-align: left; padding: 20px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .stock-table td { padding: 20px; border-bottom: 1px solid #e2e8f0; color: #475569; }
+        .status-badge { display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+        .status-available { background: #dcfce7; color: #166534; }
+        .status-limited { background: #fef9c3; color: #854d0e; }
+        .status-full { background: #fee2e2; color: #991b1b; }
+        
+        .warehouse-vis { background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 60px; text-align: center; }
+        .warehouse-vis h2 { font-family: 'Playfair Display', serif; margin-bottom: 20px; }
+        .zone-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 800px; margin: 0 auto; }
+        .zone { height: 100px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; cursor: pointer; transition: 0.3s; }
+        .zone:hover { transform: scale(1.05); }
+
+        footer { background: #0f172a; color: white; padding: 60px 0 20px 0; margin-top: auto; }
+        .footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; color: #e2e8f0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #94a3b8; }
+        .copyright { border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #64748b; font-size: 0.9rem; }
+
+        @media (max-width: 900px) { .nav-links { display: none; } .stock-table, .zone-grid, .footer-content { display: block; } .stock-table td, .stock-table th { display: block; width: 100%; } .zone { margin-bottom: 10px; } }
     </style>
 </head>
 <body>
+
     <div class="modal-overlay" id="clientModal">
         <div class="modal-box">
             <button style="position:absolute; top:15px; right:15px; border:none; background:none; font-size:1.5rem; cursor:pointer;" onclick="toggleModal()">×</button>
+            <div style="margin-bottom: 20px; color: #2563eb;"><i data-lucide="lock" size="48"></i></div>
             <h3>Strefa Klienta</h3>
             <form onsubmit="event.preventDefault();"><input type="text" class="login-input" placeholder="Login"><input type="password" class="login-input" placeholder="Hasło"><button class="login-btn">Zaloguj się</button></form>
         </div>
@@ -60,62 +75,105 @@
         <nav class="container">
             <div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div>
             <ul class="nav-links">
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="uslugi.html">Usługi</a></li>
                 <li><a href="o-nas.html">O nas</a></li>
                 <li><a href="aktualnosci.html">Aktualności</a></li>
-                <li><a href="dostepnosc.html" style="color: #2563eb; font-weight: 800;">Wolne Powierzchnie</a></li>
-                <li><button onclick="toggleModal()"><i data-lucide="user-circle"></i> Strefa Klienta</button></li>
+                <li><a href="dostepnosc.html" style="color: #2563eb; font-weight: 800; border-bottom: 2px solid #2563eb;">Wolne Powierzchnie</a></li>
+                <li><button onclick="toggleModal()"><i data-lucide="user-circle"></i> Klient</button></li>
                 <li><button onclick="toggleContrast()"><i data-lucide="eye"></i></button></li>
                 <li><a href="kontakt.html" class="btn-primary">Kontakt</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="container">
-        <h1 style="margin-bottom: 30px; font-family: 'Playfair Display', serif;">Dostępność Magazynu</h1>
-        <div class="layout-grid">
-            <div class="warehouse-map">
-                <h3>Mapa Hali Błonie</h3>
-                <div class="map-visual">
-                    <div class="sector occupied">SEKTOR A <small>Zajęty</small></div>
-                    <div class="sector free" onclick="alert('Wybrano Sektor B')">SEKTOR B <small>Wolny</small></div>
-                    <div class="sector occupied">SEKTOR C <small>Zajęty</small></div>
-                    <div class="sector free" onclick="alert('Wybrano Sektor D')">SEKTOR D <small>Wolny</small></div>
-                </div>
-            </div>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Dostępność Magazynowa</h1>
+            <p>Sprawdź aktualny stan wolnych miejsc paletowych w czasie rzeczywistym.</p>
+        </div>
+    </section>
 
-            <div class="calculator-box">
-                <h2>Kalkulator Kosztów</h2>
-                <div style="margin-top: 20px;">
-                    <label>Liczba palet: <span id="palletsVal">100</span></label>
-                    <input type="range" min="10" max="1000" value="100" class="range-slider" id="palletsRange" oninput="calculate()">
-                </div>
-                <div style="margin-top: 20px;">
-                    <label>Czas (msc): <span id="timeVal">1</span></label>
-                    <input type="range" min="1" max="24" value="1" class="range-slider" id="timeRange" oninput="calculate()">
-                </div>
-                <div class="result-box">
-                    <span class="price-value" id="totalPrice">2 500 PLN</span>
-                    <small>Szacunkowy koszt netto / msc</small>
-                </div>
+    <div class="container">
+        <div class="warehouse-vis">
+            <h2>Mapa Magazynu Błonie</h2>
+            <div class="zone-grid">
+                <div class="zone" style="background: #22c55e;" title="Wolne 500 mpl">SEKCJA A</div>
+                <div class="zone" style="background: #ef4444;" title="Zajęte">SEKCJA B</div>
+                <div class="zone" style="background: #eab308;" title="Ostatnie miejsca">SEKCJA C</div>
+                <div class="zone" style="background: #ef4444;" title="Zajęte">SEKCJA D</div>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #64748b;">Kliknij sekcję, aby zobaczyć szczegóły (wymaga logowania).</p>
+        </div>
+
+        <table class="stock-table">
+            <thead>
+                <tr>
+                    <th>Lokalizacja</th>
+                    <th>Typ Składowania</th>
+                    <th>Wolne Miejsca (MPL)</th>
+                    <th>Status</th>
+                    <th>Akcja</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Błonie, Hala A</strong></td>
+                    <td>Regały Wysokiego Składowania</td>
+                    <td>450</td>
+                    <td><span class="status-badge status-available">Dostępne</span></td>
+                    <td><a href="kontakt.html" style="color: #2563eb; font-weight: 700;">Rezerwuj</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Błonie, Hala B (Chłodnia)</strong></td>
+                    <td>Kontrola Temperatury</td>
+                    <td>20</td>
+                    <td><span class="status-badge status-limited">Ostatnie sztuki</span></td>
+                    <td><a href="kontakt.html" style="color: #2563eb; font-weight: 700;">Rezerwuj</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Pruszków, Hala C</strong></td>
+                    <td>Block Stacking</td>
+                    <td>0</td>
+                    <td><span class="status-badge status-full">Brak miejsc</span></td>
+                    <td><span style="color: #94a3b8;">Powiadom mnie</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>Total Logistics</h4>
+                <p style="color: #94a3b8; font-size: 0.9rem;">Lider logistyki kontraktowej.<br>Twoje towary, nasza pasja.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Nawigacja</h4>
+                <ul>
+                    <li><a href="o-nas.html">O nas</a></li>
+                    <li><a href="uslugi.html">Usługi</a></li>
+                    <li><a href="dostepnosc.html">Wolne powierzchnie</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="#" onclick="toggleModal()">Strefa Klienta</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Szybki Kontakt</h4>
+                <ul>
+                    <li style="color: #94a3b8;">ul. Logistyczna 1, Błonie</li>
+                    <li><a href="tel:+48221234567">+48 22 123 45 67</a></li>
+                </ul>
             </div>
         </div>
-    </div>
+        <div class="copyright">© 2026 Total Logistics Sp. z o.o.</div>
+    </footer>
 
     <script>
         lucide.createIcons();
         function toggleModal() { const m = document.getElementById('clientModal'); m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; }
         document.getElementById('clientModal').addEventListener('click', function(e) { if(e.target===this) toggleModal(); });
         function toggleContrast() { document.body.classList.toggle('contrast-mode'); }
-
-        function calculate() {
-            const p = document.getElementById('palletsRange').value;
-            const t = document.getElementById('timeRange').value;
-            document.getElementById('palletsVal').innerText = p;
-            document.getElementById('timeVal').innerText = t;
-            let price = p * 25;
-            if (t > 6) price *= 0.95;
-            document.getElementById('totalPrice').innerText = Math.round(price).toLocaleString() + " PLN";
-        }
     </script>
 </body>
 </html>

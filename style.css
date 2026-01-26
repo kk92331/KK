@@ -50,3 +50,122 @@ input, textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid
 /* Animations */
 [data-reveal] { opacity: 0; transform: translateY(20px); transition: 1s ease-out; }
 .revealed { opacity: 1; transform: translateY(0); }
+/* --- NOWE STYLE DLA SEKCJI DOSTĘPNOŚĆ (DASHBOARD) --- */
+
+.bg-light { background-color: #f9f9f9; }
+.mb-60 { margin-bottom: 60px; }
+.badge-accent {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.1);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* Kontener Dashboardu */
+.dashboard-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Lewa kolumna węższa, prawa szersza */
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* Lewa kolumna - Sterowanie */
+.dashboard-controls {
+    padding: 40px;
+    border-right: 1px solid #eee;
+}
+
+.capacity-status { margin-bottom: 30px; }
+.flex-between { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; }
+.progress-track {
+    background: #e0e0e0;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    width: 0%; /* JS to zmieni */
+    transition: width 1s ease;
+}
+.divider { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+
+/* Karta Ceny */
+.price-card {
+    background: #f0fdf4; /* Jasny zielony */
+    border: 1px solid #bbf7d0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    animation: fadeIn 0.5s;
+}
+.price-header { font-size: 0.9rem; color: #166534; }
+.price-value { font-size: 1.8rem; font-weight: 800; color: #15803d; margin: 5px 0; }
+.price-details { font-size: 0.75rem; color: #888; }
+
+/* Prawa kolumna - Wizualizacja */
+.dashboard-visual {
+    padding: 40px;
+    background: #f8fafc;
+}
+.visual-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.legend { display: flex; gap: 15px; font-size: 0.8rem; }
+.dot { width: 10px; height: 10px; display: inline-block; border-radius: 50%; margin-right: 5px; }
+.dot.occupied { background: #cbd5e1; } /* Szary */
+.dot.free { background: white; border: 1px solid #cbd5e1; }
+.dot.yours { background: #2563eb; } /* Niebieski */
+
+/* Siatka Magazynu */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* 10 klocków w rzędzie */
+    gap: 4px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.grid-cell {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 2px;
+    aspect-ratio: 1; /* Kwadraty */
+    transition: all 0.3s;
+}
+
+.grid-cell.occupied {
+    background-color: #cbd5e1;
+    border-color: #94a3b8;
+}
+
+.grid-cell.client-a { background-color: #e2e8f0; } /* Inni klienci */
+.grid-cell.client-b { background-color: #cfd8dc; }
+
+.grid-cell.new-item {
+    background-color: #2563eb;
+    border-color: #1e40af;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Responsywność */
+@media (max-width: 900px) {
+    .dashboard-wrapper { grid-template-columns: 1fr; }
+    .dashboard-controls { border-right: none; border-bottom: 1px solid #eee; }
+    .grid-container { height: 200px; }
+}

@@ -17,7 +17,7 @@
         ul { list-style: none; }
         button { cursor: pointer; font-family: inherit; }
 
-        /* --- HEADER & NAV (Spójne z Kontakt) --- */
+        /* --- HEADER & NAV --- */
         header { background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo a { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 800; color: #0f172a; }
@@ -29,19 +29,12 @@
         }
         .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
         
-        /* Przycisk Kontakt wyróżniony */
         .btn-primary { background: #2563eb; color: white !important; padding: 10px 24px; border-radius: 6px; font-weight: 600; }
         .btn-primary:hover { background: #1d4ed8; }
 
-        /* --- WCAG --- */
-        body.contrast-mode { background-color: #000 !important; color: #ffff00 !important; }
-        body.contrast-mode * { background-color: #000 !important; color: #ffff00 !important; border-color: #ffff00 !important; box-shadow: none !important; }
-        body.contrast-mode img { filter: grayscale(100%) contrast(120%); opacity: 0.8; }
-        body.contrast-mode .hero { background: #000; } 
-
         /* --- HERO --- */
         .hero { 
-            background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.7)), 
+            background: linear-gradient(rgba(15,23,42,0.75), rgba(15,23,42,0.75)), 
                         url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); 
             background-size: cover; background-position: center;
             height: 85vh; display: flex; align-items: center; justify-content: center; 
@@ -49,12 +42,17 @@
         }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: white; margin-bottom: 20px; }
         
-        /* --- USŁUGI --- */
+        /* --- USŁUGI (TEASER) --- */
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 80px 0; }
         .service-card { padding: 40px; border: 1px solid #e2e8f0; border-radius: 12px; text-align: center; transition: 0.3s; }
         .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: #2563eb; }
         .service-card h3 { margin: 20px 0 10px 0; font-size: 1.4rem; }
         .service-card p { color: #64748b; }
+
+        /* --- MAP SECTION --- */
+        .map-section { padding: 60px 0; background: #f8fafc; border-top: 1px solid #e2e8f0; }
+        .map-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); background: white; }
+        .map-info { padding: 50px; display: flex; flex-direction: column; justify-content: center; }
 
         /* --- MODAL --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
@@ -63,17 +61,20 @@
         .login-btn { width: 100%; background: #2563eb; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 700; cursor: pointer; }
 
         /* --- FOOTER --- */
-        footer { background: #0f172a; color: white; padding: 60px 0 20px 0; margin-top: 50px; }
+        footer { background: #0f172a; color: white; padding: 60px 0 20px 0; margin-top: 0; }
         .footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; color: #e2e8f0; }
         .footer-col ul li { margin-bottom: 10px; }
         .footer-col ul li a { color: #94a3b8; }
         .footer-col ul li a:hover { color: white; }
         .copyright { border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #64748b; font-size: 0.9rem; }
+        
+        body.contrast-mode { background-color: #000 !important; color: #ffff00 !important; }
+        body.contrast-mode * { background-color: #000 !important; color: #ffff00 !important; border-color: #ffff00 !important; box-shadow: none !important; }
 
         @media (max-width: 900px) {
-            .nav-links { display: none; } /* Na mobilu ukrywamy (do zrobienia hamburger menu w przyszłości) */
-            .services-grid, .footer-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .services-grid, .footer-content, .map-wrapper { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
         }
     </style>
@@ -85,7 +86,6 @@
             <button style="position:absolute; top:15px; right:15px; border:none; background:none; font-size:1.5rem; cursor:pointer;" onclick="toggleModal()">×</button>
             <div style="margin-bottom: 20px; color: #2563eb;"><i data-lucide="lock" size="48"></i></div>
             <h3>Strefa Klienta</h3>
-            <p style="margin-bottom: 20px; color: #64748b; font-size: 0.9rem;">Dostęp do WMS / Tracking</p>
             <form onsubmit="event.preventDefault();"><input type="text" class="login-input" placeholder="Login"><input type="password" class="login-input" placeholder="Hasło"><button class="login-btn">Zaloguj się</button></form>
         </div>
     </div>
@@ -95,24 +95,14 @@
             <div class="logo">
                 <a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a>
             </div>
-            
             <ul class="nav-links">
+                <li><a href="index.html" style="color: #2563eb; font-weight: 800;">Strona Główna</a></li>
+                <li><a href="uslugi.html">Usługi</a></li>
                 <li><a href="o-nas.html">O nas</a></li>
-                <li><a href="#uslugi">Usługi</a></li>
                 <li><a href="aktualnosci.html">Aktualności</a></li>
                 <li><a href="dostepnosc.html" style="color: #2563eb; font-weight: 800;">Wolne Powierzchnie</a></li>
-                
-                <li>
-                    <button onclick="toggleModal()" title="Strefa Klienta">
-                        <i data-lucide="user-circle" size="20"></i> Klient
-                    </button>
-                </li>
-                <li>
-                    <button onclick="toggleContrast()" title="Kontrast">
-                        <i data-lucide="eye" size="20"></i>
-                    </button>
-                </li>
-                
+                <li><button onclick="toggleModal()"><i data-lucide="user-circle"></i> Klient</button></li>
+                <li><button onclick="toggleContrast()"><i data-lucide="eye"></i></button></li>
                 <li><a href="kontakt.html" class="btn-primary">Kontakt</a></li>
             </ul>
         </nav>
@@ -131,7 +121,7 @@
         </div>
     </section>
 
-    <section class="container" id="uslugi">
+    <section class="container" style="padding-top: 80px;">
         <div class="services-grid">
             <div class="service-card">
                 <div style="color: #2563eb; margin-bottom: 15px;"><i data-lucide="warehouse" size="40"></i></div>
@@ -149,9 +139,12 @@
                 <p>Etykietowanie, foliowanie, tworzenie zestawów promocyjnych (VAS).</p>
             </div>
         </div>
+        <div style="text-align: center; margin-bottom: 80px;">
+            <a href="uslugi.html" style="color: #2563eb; font-weight: bold; font-size: 1.1rem;">Zobacz pełną ofertę usług &rarr;</a>
+        </div>
     </section>
     
-    <section class="container" style="padding-bottom: 60px;">
+    <section class="container" style="margin-bottom: 60px;">
         <h2 style="margin-bottom: 30px; font-family: 'Playfair Display', serif; font-size: 2.5rem;">Aktualności</h2>
         <div style="background: #f8fafc; padding: 30px; border-radius: 12px; display: flex; gap: 30px; align-items: center; border: 1px solid #e2e8f0;">
              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" style="border-radius: 8px; width: 150px; height: 150px; object-fit: cover;">
@@ -159,10 +152,40 @@
                  <span style="font-size: 0.8rem; font-weight: 700; color: #2563eb; text-transform: uppercase;">Z życia firmy</span>
                  <h3 style="margin: 5px 0 10px 0; font-size: 1.5rem;">Rozbudowa Magazynu</h3>
                  <p style="color: #64748b; margin-bottom: 15px;">Uruchomiliśmy nową halę o powierzchni 5000 mkw dedykowaną dla branży spożywczej.</p>
-                 <a href="#" style="color: #2563eb; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                 <a href="aktualnosci.html" style="color: #2563eb; font-weight: bold; display: flex; align-items: center; gap: 5px;">
                     Czytaj więcej <i data-lucide="arrow-right" size="16"></i>
                  </a>
              </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="container">
+            <h2 style="margin-bottom: 30px; font-family: 'Playfair Display', serif; font-size: 2.5rem;">Znajdź nas</h2>
+            <div class="map-wrapper">
+                <div class="map-info">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: #0f172a;">Centrala Błonie</h3>
+                    <p style="margin-bottom: 25px; color: #64748b; font-size: 1.1rem;">
+                        Strategiczna lokalizacja przy węźle autostrady A2. <br>
+                        20 minut od Warszawy.
+                    </p>
+                    <ul style="margin-bottom: 30px;">
+                        <li style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
+                            <i data-lucide="map-pin" style="color:#2563eb"></i> ul. Logistyczna 1, 05-870 Błonie
+                        </li>
+                        <li style="display:flex; align-items:center; gap:10px; margin-bottom:15px;">
+                            <i data-lucide="phone" style="color:#2563eb"></i> +48 22 123 45 67
+                        </li>
+                        <li style="display:flex; align-items:center; gap:10px;">
+                            <i data-lucide="mail" style="color:#2563eb"></i> biuro@total-logistics.pl
+                        </li>
+                    </ul>
+                    <a href="kontakt.html" class="btn-primary" style="align-self: start; text-align:center;">Przejdź do kontaktu</a>
+                </div>
+                <div style="min-height: 400px; width: 100%;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39000.64834876612!2d20.58!3d52.19!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47194c7b60000001%3A0x0!2zT3BlcmF0b3IgTG9naXN0eWN6bnk!5e0!3m2!1spl!2spl!4v1620000000000!5m2!1spl!2spl" width="100%" height="100%" style="border:0; min-height: 400px;" loading="lazy"></iframe>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -179,6 +202,7 @@
                 <h4>Nawigacja</h4>
                 <ul>
                     <li><a href="o-nas.html">O nas</a></li>
+                    <li><a href="uslugi.html">Usługi</a></li>
                     <li><a href="dostepnosc.html">Wolne powierzchnie</a></li>
                     <li><a href="kontakt.html">Kontakt</a></li>
                     <li><a href="#" onclick="toggleModal()">Strefa Klienta</a></li>
@@ -200,7 +224,6 @@
 
     <script>
         lucide.createIcons();
-        
         function toggleModal() { 
             const m = document.getElementById('clientModal'); 
             m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; 

@@ -4,103 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aktualności | Total Logistics</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <style>
-        body { font-family: 'Montserrat', sans-serif; margin: 0; color: #333; line-height: 1.6; background: #f8fafc; }
+        /* --- BAZA I HEADER (JEDNOLITE) --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; color: #1e293b; line-height: 1.6; background-color: #f8fafc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        /* HEADER */
-        header { background: white; padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo a { text-decoration: none; color: #333; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 5px; }
-        .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: #2563eb; }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+        button { cursor: pointer; font-family: inherit; }
 
-        /* LISTA NEWSÓW */
-        .news-header { text-align: center; padding: 60px 0 40px; }
-        .news-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
+        header { background: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo a { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 800; color: #0f172a; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a:not(.btn-primary), .nav-links button { color: #475569; font-weight: 600; background: none; border: none; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
+        .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
+        .btn-primary { background: #2563eb; color: white !important; padding: 10px 24px; border-radius: 6px; font-weight: 600; }
+        .btn-primary:hover { background: #1d4ed8; }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-box { background: white; padding: 40px; border-radius: 12px; width: 100%; max-width: 400px; position: relative; text-align: center; }
+        .login-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 6px; }
+        .login-btn { width: 100%; background: #2563eb; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+
+        body.contrast-mode { background-color: #000 !important; color: #ffff00 !important; }
+        body.contrast-mode * { background-color: #000 !important; color: #ffff00 !important; border-color: #ffff00 !important; box-shadow: none !important; }
+
+        /* PAGE SPECIFIC */
+        .page-hero { background: #1e293b; color: white; padding: 60px 0; text-align: center; margin-bottom: 60px; }
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
         
         .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 80px; }
-        
-        .news-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; }
+        .news-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #e2e8f0; }
         .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .news-img { height: 200px; background-size: cover; background-position: center; }
-        .news-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        .news-date { color: #888; font-size: 0.9rem; margin-bottom: 10px; display: block; }
-        .news-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; color: #1e293b; }
-        .read-more { margin-top: auto; color: #2563eb; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .news-img { width: 100%; height: 200px; object-fit: cover; }
+        .news-content { padding: 25px; }
+        .news-date { font-size: 0.8rem; color: #64748b; margin-bottom: 10px; display: block; font-weight: 600; }
+        .news-content h3 { font-size: 1.25rem; margin-bottom: 10px; color: #0f172a; line-height: 1.4; }
+        .news-link { color: #2563eb; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; font-size: 0.9rem; }
 
-        footer { background: #111; color: #888; padding: 40px 0; text-align: center; }
-        @media(max-width: 768px) { .news-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+        footer { background: #0f172a; color: white; padding: 60px 0 20px 0; margin-top: auto; }
+        .footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 20px; color: #e2e8f0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #94a3b8; }
+        .copyright { border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #64748b; font-size: 0.9rem; }
+
+        @media (max-width: 900px) { .nav-links { display: none; } .news-grid, .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
+
+    <div class="modal-overlay" id="clientModal">
+        <div class="modal-box">
+            <button style="position:absolute; top:15px; right:15px; border:none; background:none; font-size:1.5rem; cursor:pointer;" onclick="toggleModal()">×</button>
+            <div style="margin-bottom: 20px; color: #2563eb;"><i data-lucide="lock" size="48"></i></div>
+            <h3>Strefa Klienta</h3>
+            <form onsubmit="event.preventDefault();"><input type="text" class="login-input" placeholder="Login"><input type="password" class="login-input" placeholder="Hasło"><button class="login-btn">Zaloguj się</button></form>
+        </div>
+    </div>
 
     <header>
         <nav class="container">
             <div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div>
             <ul class="nav-links">
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="uslugi.html">Usługi</a></li>
                 <li><a href="o-nas.html">O nas</a></li>
-                <li><a href="aktualnosci.html" class="active">Aktualności</a></li>
-                <li><a href="index.html#demo">Strefa Klienta</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
+                <li><a href="aktualnosci.html" style="color: #2563eb;">Aktualności</a></li>
+                <li><a href="dostepnosc.html" style="color: #2563eb; font-weight: 800;">Wolne Powierzchnie</a></li>
+                <li><button onclick="toggleModal()"><i data-lucide="user-circle"></i> Klient</button></li>
+                <li><button onclick="toggleContrast()"><i data-lucide="eye"></i></button></li>
+                <li><a href="kontakt.html" class="btn-primary">Kontakt</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="container">
-        <div class="news-header">
-            <h1>Blog Logistyczny</h1>
-            <p>Najnowsze informacje z życia firmy i branży.</p>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Aktualności</h1>
+            <p>Najnowsze informacje z życia firmy i branży TSL.</p>
         </div>
+    </section>
 
+    <div class="container">
         <div class="news-grid">
-            
             <div class="news-card">
-                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=600&q=80');"></div>
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&q=80" class="news-img" alt="Magazyn">
                 <div class="news-content">
-                    <span class="news-date">20 Stycznia 2026</span>
-                    <div class="news-title">Nowe rampy przeładunkowe w Błoniu</div>
-                    <p>Zakończyliśmy modernizację sektora B. Nowe doki zwiększą przepustowość o 30%.</p>
-                    <a href="news-rampy.html" class="read-more">Czytaj więcej <i data-lucide="arrow-right" size="16"></i></a>
+                    <span class="news-date">24 STYCZNIA 2026</span>
+                    <h3>Otwarcie nowego centrum w Błoniu</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Zwiększamy potencjał operacyjny o kolejne 5000 mkw powierzchni klasy A.</p>
+                    <a href="#" class="news-link">Czytaj więcej <i data-lucide="arrow-right" size="16"></i></a>
                 </div>
             </div>
-
             <div class="news-card">
-                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1628135870373-c6467399895c?q=80&w=600&auto=format&fit=crop');"></div>
+                <img src="https://images.unsplash.com/photo-1566576912906-25434ad8b2f9?w=500&q=80" class="news-img" alt="Ciężarówka">
                 <div class="news-content">
-                    <span class="news-date">15 Stycznia 2026</span>
-                    <div class="news-title">Rekordowy rok: 14 200 obsłużonych aut</div>
-                    <p>Podsumowanie roku 2025. Zobacz nasze statystyki i plany na przyszłość.</p>
-                    <a href="news-rekord.html" class="read-more">Czytaj więcej <i data-lucide="arrow-right" size="16"></i></a>
+                    <span class="news-date">10 STYCZNIA 2026</span>
+                    <h3>Nowa flota niskoemisyjna</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Inwestujemy w ekologię. Do naszej floty dołączyło 10 ciągników LNG.</p>
+                    <a href="#" class="news-link">Czytaj więcej <i data-lucide="arrow-right" size="16"></i></a>
                 </div>
             </div>
-
             <div class="news-card">
-                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80');"></div>
+                <img src="https://images.unsplash.com/photo-1556740758-90de2929e50a?w=500&q=80" class="news-img" alt="Biuro">
                 <div class="news-content">
-                    <span class="news-date">02 Stycznia 2026</span>
-                    <div class="news-title">Otwarcie magazynu wideo</div>
-                    <p>Zobacz relację wideo z otwarcia naszej nowej hali wysokiego składowania.</p>
-                    <a href="news-otwarcie.html" class="read-more">Czytaj więcej <i data-lucide="arrow-right" size="16"></i></a>
+                    <span class="news-date">20 GRUDNIA 2025</span>
+                    <h3>Wesołych Świąt!</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 15px;">Dziękujemy za rok pełen wyzwań. Sprawdź godziny pracy w okresie świątecznym.</p>
+                    <a href="#" class="news-link">Czytaj więcej <i data-lucide="arrow-right" size="16"></i></a>
                 </div>
             </div>
-
         </div>
     </div>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Total Logistics.</p>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>Total Logistics</h4>
+                <p style="color: #94a3b8; font-size: 0.9rem;">Lider logistyki kontraktowej.<br>Twoje towary, nasza pasja.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Nawigacja</h4>
+                <ul>
+                    <li><a href="o-nas.html">O nas</a></li>
+                    <li><a href="uslugi.html">Usługi</a></li>
+                    <li><a href="dostepnosc.html">Wolne powierzchnie</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="#" onclick="toggleModal()">Strefa Klienta</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Szybki Kontakt</h4>
+                <ul>
+                    <li style="color: #94a3b8;">ul. Logistyczna 1, Błonie</li>
+                    <li><a href="tel:+48221234567">+48 22 123 45 67</a></li>
+                </ul>
+            </div>
         </div>
+        <div class="copyright">© 2026 Total Logistics Sp. z o.o.</div>
     </footer>
 
     <script>
         lucide.createIcons();
+        function toggleModal() { const m = document.getElementById('clientModal'); m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; }
+        document.getElementById('clientModal').addEventListener('click', function(e) { if(e.target===this) toggleModal(); });
+        function toggleContrast() { document.body.classList.toggle('contrast-mode'); }
     </script>
 </body>
 </html>
