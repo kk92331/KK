@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nowy system WMS | Total Logistics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; color: #1e293b; line-height: 1.8; background-color: #f8fafc; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; } /* Węższy kontener dla artykułu */
+        a { text-decoration: none; transition: 0.3s; }
+        button { cursor: pointer; font-family: inherit; }
+
+        header { background: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo a { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 800; color: #0f172a; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a:not(.btn-primary), .nav-links button { color: #475569; font-weight: 600; background: none; border: none; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
+        .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
+        .btn-primary { background: #2563eb; color: white !important; padding: 10px 24px; border-radius: 6px; font-weight: 600; }
+        
+        /* ARTICLE STYLES */
+        .article-header { padding: 60px 0 40px 0; text-align: center; }
+        .article-meta { color: #64748b; font-size: 0.9rem; margin-bottom: 15px; display: flex; justify-content: center; gap: 20px; }
+        .article-tag { color: #2563eb; font-weight: 700; text-transform: uppercase; }
+        .article-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #1e293b; line-height: 1.2; margin-bottom: 30px; }
+        
+        .hero-image { width: 100%; height: 400px; border-radius: 12px; overflow: hidden; margin-bottom: 50px; }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .content { background: white; padding: 50px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; font-size: 1.05rem; color: #334155; }
+        .content h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 30px 0 15px 0; color: #1e293b; }
+        .content p { margin-bottom: 20px; }
+        .content ul { margin-bottom: 20px; padding-left: 20px; }
+        .content li { margin-bottom: 10px; }
+
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: #64748b; font-weight: 600; margin-bottom: 20px; }
+        .back-btn:hover { color: #2563eb; transform: translateX(-5px); }
+
+        footer { background: #0f172a; color: white; padding: 60px 0 20px 0; margin-top: 80px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 0 20px; }
+        .copyright { max-width: 1200px; margin: 40px auto 0; border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #64748b; }
+
+        @media (max-width: 800px) { .nav-links { display: none; } .article-title { font-size: 2rem; } .content { padding: 20px; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="aktualnosci.html" style="color:#2563eb">Aktualności</a></li>
+                <li><a href="dostepnosc.html">Wolne Powierzchnie</a></li>
+                <li><a href="kontakt.html" class="btn-primary">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <a href="aktualnosci.html" class="back-btn"><i data-lucide="arrow-left" size="18"></i> Wróć do listy</a>
+
+        <article>
+            <div class="article-header">
+                <div class="article-meta">
+                    <span class="article-tag">Technologia</span>
+                    <span>•</span>
+                    <span>24 Stycznia 2026</span>
+                </div>
+                <h1 class="article-title">Nowy system WMS wdrożony w oddziale Błonie</h1>
+            </div>
+
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200" alt="Magazyn">
+            </div>
+
+            <div class="content">
+                <p><strong>Z przyjemnością informujemy o zakończeniu kluczowego etapu modernizacji naszego głównego centrum dystrybucyjnego w Błoniu. Od dziś wszystkie operacje magazynowe są zarządzane przez system WMS klasy Enterprise.</strong></p>
+                
+                <h2>Co to oznacza dla naszych Klientów?</h2>
+                <p>Nowy system pozwala na pełną automatyzację procesu przyjmowania i wydawania towarów. Dzięki zastosowaniu skanerów nowej generacji i algorytmów sztucznej inteligencji, udało nam się zredukować czas kompletacji zamówień o 35%.</p>
+                
+                <ul>
+                    <li><strong>Śledzenie w czasie rzeczywistym:</strong> Klienci widzą stany magazynowe z dokładnością co do sekundy.</li>
+                    <li><strong>Eliminacja błędów:</strong> System weryfikuje wagę i wymiary każdej paczki przed wysyłką.</li>
+                    <li><strong>Optymalizacja tras wózków:</strong> Magazynierzy pokonują krótsze dystanse, co przekłada się na szybszą realizację.</li>
+                </ul>
+
+                <h2>Plany na przyszłość</h2>
+                <p>To dopiero początek zmian. W kolejnym kwartale planujemy integrację systemu z platformami e-commerce takimi jak Allegro, Shopify i Magento, co pozwoli na w pełni automatyczny dropshipping.</p>
+                
+                <p>Zapraszamy do kontaktu z działem handlowym, aby poznać szczegóły oferty integracyjnej.</p>
+            </div>
+        </article>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div><h4>Total Logistics</h4><p style="color:#94a3b8">Lider logistyki kontraktowej.</p></div>
+            <div><h4>Nawigacja</h4><ul style="list-style:none"><li><a href="aktualnosci.html" style="color:#94a3b8">Aktualności</a></li><li><a href="kontakt.html" style="color:#94a3b8">Kontakt</a></li></ul></div>
+            <div><h4>Kontakt</h4><p style="color:#94a3b8">biuro@total-logistics.pl</p></div>
+        </div>
+        <div class="copyright">© 2026 Total Logistics Sp. z o.o.</div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

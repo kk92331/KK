@@ -3,94 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wideo z Otwarcia | Total Logistics</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Wielkie Otwarcie Hali C | Total Logistics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body { font-family: 'Montserrat', sans-serif; color: #333; margin: 0; line-height: 1.8; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        body { font-family: 'Montserrat', sans-serif; background: #f8fafc; color: #334155; margin:0; padding:0; line-height:1.8; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
         
-        /* HEADER */
-        header { background: white; padding: 20px 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo a { text-decoration: none; color: #333; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 5px; }
-        .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: #2563eb; }
-        
-        .article-container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 15px 0; }
+        header { background: white; border-bottom: 1px solid #e2e8f0; padding: 15px 0; position: sticky; top: 0; z-index: 1000; }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 20px; align-items: center; }
+        .logo a { font-weight: 800; font-size: 1.5rem; color: #0f172a; text-decoration: none; display: flex; align-items: center; gap: 8px; }
 
-        /* KONTENER WIDEO */
-        .video-container { 
-            position: relative; 
-            width: 100%;
-            border-radius: 10px; 
+        .article-wrapper { background: white; margin-top: 40px; margin-bottom: 80px; padding: 60px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #64748b; text-decoration: none; font-weight: 600; margin-bottom: 30px; transition: 0.3s; }
+        .back-link:hover { color: #2563eb; transform: translateX(-5px); }
+
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; line-height: 1.2; color: #0f172a; margin-bottom: 10px; }
+        .meta { color: #94a3b8; font-size: 0.9rem; margin-bottom: 40px; display: flex; gap: 20px; }
+        
+        /* --- KINOWY SLIDER (ZAMIAST WIDEO) --- */
+        .cinematic-slider { 
+            width: 100%; 
+            height: 500px; 
+            border-radius: 12px; 
             overflow: hidden; 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            margin-bottom: 30px;
+            margin-bottom: 40px; 
+            position: relative; 
             background: #000;
-            line-height: 0; /* Usuwa puste miejsce pod wideo */
         }
-        
-        video {
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 6s linear; /* Płynne przenikanie i zoom */
+            transform: scale(1);
         }
 
-        .content ul { list-style-type: disc; margin-left: 20px; color: #555; }
-        .content li { margin-bottom: 10px; }
+        /* Klasa aktywna - pokazuje slajd i robi zoom */
+        .slide.active {
+            opacity: 1;
+            transform: scale(1.1); /* Efekt Ken Burns (przybliżanie) */
+        }
 
-        .btn-back { display: inline-flex; align-items: center; gap: 5px; margin-top: 40px; text-decoration: none; color: #2563eb; font-weight: bold; transition: 0.3s;}
-        .btn-back:hover { text-decoration: underline; }
+        /* Napisy na slajdach */
+        .slide-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: white;
+            background: rgba(0,0,0,0.6);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            border-left: 4px solid #2563eb;
+        }
+
+        /* TABELA */
+        .specs-table { width: 100%; border-collapse: collapse; margin: 30px 0; }
+        .specs-table td { padding: 15px; border-bottom: 1px solid #e2e8f0; }
+        .specs-table td:first-child { font-weight: 700; color: #1e293b; width: 40%; }
+        .specs-table tr:last-child td { border-bottom: none; }
+
+        /* CYTAT */
+        .quote-box { background: #f1f5f9; padding: 30px; border-radius: 8px; border-left: 4px solid #2563eb; margin: 30px 0; font-style: italic; }
+        .quote-author { display: block; margin-top: 15px; font-weight: 700; font-style: normal; color: #0f172a; }
+
+        footer { background: #0f172a; color: white; padding: 40px 0; text-align: center; }
         
-        @media(max-width: 768px) { .nav-links { display: none; } }
+        @media(max-width: 768px) { .article-wrapper { padding: 30px; } .cinematic-slider { height: 300px; } }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div>
-            <ul class="nav-links">
-                <li><a href="o-nas.html">O nas</a></li>
-                <li><a href="aktualnosci.html" style="color: #2563eb;">Aktualności</a></li>
-                <li><a href="index.html#demo">Strefa Klienta</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header><nav class="container"><div class="logo"><a href="index.html"><i data-lucide="box"></i> TOTAL LOGISTICS</a></div></nav></header>
 
-    <article class="article-container">
-        <span style="color: #888; font-weight: bold; letter-spacing: 1px;">RELACJA WIDEO</span>
-        <h1 style="margin: 10px 0;">Nowoczesny system składowania – Zobacz jak działamy</h1>
-        
-        <div class="video-container">
-            <video autoplay muted loop playsinline controls>
-                <source src="https://cdn.pixabay.com/video/2019/04/23/23011-332483109_large.mp4" type="video/mp4">
-                Twoja przeglądarka nie obsługuje tagu wideo.
-            </video>
-        </div>
-        
-        <div class="content">
-            <p>15 grudnia 2025 roku oficjalnie uruchomiliśmy nasz nowy system zarządzania magazynem (WMS) zintegrowany z automatyką sortującą. Powyższy materiał wideo prezentuje, jak technologia wspiera naszych pracowników w codziennych zadaniach.</p>
+    <div class="container">
+        <div class="article-wrapper">
+            <a href="aktualnosci.html" class="back-link"><i data-lucide="arrow-left" size="18"></i> Wróć do listy</a>
             
-            <p><strong>Najważniejsze momenty widoczne na nagraniu:</strong></p>
-            <ul>
-                <li>Automatyczne skanowanie kodów kreskowych w ruchu (skuteczność 99.9%).</li>
-                <li>Sortowanie przesyłek z prędkością do 4000 paczek na godzinę.</li>
-                <li>Płynny przepływ towarów bez ingerencji manualnej.</li>
-            </ul>
+            <div class="meta"><span><i data-lucide="calendar" size="16"></i> 15 Stycznia 2026</span><span><i data-lucide="map-pin" size="16"></i> Błonie, Park Logistyczny</span></div>
 
-            <div style="background: #f8fafc; padding: 20px; border-left: 4px solid #2563eb; margin-top: 30px;">
-                <p style="margin: 0; font-style: italic;">"Patrząc na te taśmociągi, widzę przyszłość polskiej logistyki. Inwestycja w automatyzację pozwoliła nam zwiększyć wydajność kompletacji o 40%, co bezpośrednio przekłada się na zadowolenie naszych Klientów."</p>
-                <p style="margin: 10px 0 0 0; font-weight: bold;">— Wiesław Puchacki, Prezes Zarządu</p>
+            <h1>Wielkie otwarcie Hali C. Kolejne 10 000 m² gotowe do działania</h1>
+            
+            <div class="cinematic-slider">
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200');">
+                    <div class="slide-caption">WNĘTRZE: Wysokie składowanie do 12 metrów</div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=1200');">
+                    <div class="slide-caption">SPRZĘT: Flota wózków VNA System</div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200');">
+                    <div class="slide-caption">EKOLOGIA: Certyfikat BREEAM Excellent</div>
+                </div>
             </div>
+
+            <p style="font-size: 1.2rem; font-weight: 500;">Dokładnie o godzinie 10:00 Prezes Janusz Wiśniewski przeciął symboliczną wstęgę, otwierając najnowocześniejszy obiekt w naszym portfolio. Hala C to odpowiedź na rosnące zapotrzebowanie sektora e-commerce.</p>
+
+            <p>Budowa trwała 14 miesięcy i pochłonęła blisko 45 milionów złotych. Obiekt został zaprojektowany zgodnie z wymogami certyfikacji BREEAM na poziomie "Excellent". Oznacza to, że budynek jest nie tylko funkcjonalny, ale i przyjazny dla środowiska.</p>
+
+            <div class="quote-box">
+                "To nie jest po prostu kolejny magazyn. To inteligentne centrum dystrybucyjne, w którym systemy zarządzania budynkiem (BMS) współpracują z automatyką magazynową. Dzięki panelom fotowoltaicznym na dachu, obiekt jest w słoneczne dni samowystarczalny energetycznie."
+                <span class="quote-author">– Janusz Wiśniewski, Prezes Zarządu Total Logistics</span>
+            </div>
+
+            <h2>Specyfikacja techniczna obiektu</h2>
+            <p>Nowa hala oferuje najwyższy standard składowania dostępny na rynku:</p>
+
+            <table class="specs-table">
+                <tr><td>Powierzchnia całkowita</td><td>10 500 m²</td></tr>
+                <tr><td>Wysokość w świetle</td><td>12 m (składowanie do 6 poziomów)</td></tr>
+                <tr><td>Nośność posadzki</td><td>7T / m² (bezpyłowa)</td></tr>
+                <tr><td>Liczba doków</td><td>14 doków hydraulicznych + 2 bramy "0"</td></tr>
+                <tr><td>Ochrona PPOŻ</td><td>Tryskacze ESFR (zgodne z NFPA)</td></tr>
+                <tr><td>Ekologia</td><td>Oświetlenie LED DALI, Fotowoltaika 50kWp</td></tr>
+            </table>
+
+            <h2>Co to oznacza dla klientów?</h2>
+            <p>Uruchomienie Hali C pozwoli nam na przyjęcie nowych kontraktów logistycznych jeszcze w tym kwartale. Pierwsze towary – elektronika użytkowa oraz komponenty automotive – wjadą na regały już w przyszłym tygodniu.</p>
         </div>
+    </div>
+
+    <footer><div class="container">© 2026 Total Logistics Sp. z o.o.</div></footer>
+    
+    <script>
+        lucide.createIcons();
         
-        <a href="aktualnosci.html" class="btn-back"><i data-lucide="arrow-left"></i> Wróć do listy</a>
-    </article>
-    <script> lucide.createIcons(); </script>
+        // Skrypt obsługujący slider
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            // Usuń klasę active z obecnego
+            slides[currentSlide].classList.remove('active');
+            
+            // Przejdź do następnego (zapętlając)
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Dodaj klasę active nowemu
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Zmieniaj slajd co 5 sekund
+        setInterval(nextSlide, 5000);
+    </script>
 </body>
 </html>
