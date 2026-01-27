@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolne Powierzchnie | Total Logistics</title>
+    <title>Wolne Powierzchnie i Kalkulator | Total Logistics</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* --- BAZA I HEADER (JEDNOLITE) --- */
+        /* --- BAZA I HEADER --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Montserrat', sans-serif; color: #1e293b; line-height: 1.6; background-color: #f8fafc; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -32,23 +32,35 @@
         body.contrast-mode { background-color: #000 !important; color: #ffff00 !important; }
         body.contrast-mode * { background-color: #000 !important; color: #ffff00 !important; border-color: #ffff00 !important; box-shadow: none !important; }
 
-        /* PAGE SPECIFIC */
+        /* --- STYLE KALKULATORA --- */
         .page-hero { background: #1e293b; color: white; padding: 60px 0; text-align: center; margin-bottom: 40px; }
         .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
         
-        .stock-table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 60px; }
-        .stock-table th { background: #eff6ff; color: #1e3a8a; font-weight: 700; text-align: left; padding: 20px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
-        .stock-table td { padding: 20px; border-bottom: 1px solid #e2e8f0; color: #475569; }
-        .status-badge { display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
-        .status-available { background: #dcfce7; color: #166534; }
-        .status-limited { background: #fef9c3; color: #854d0e; }
-        .status-full { background: #fee2e2; color: #991b1b; }
+        .calculator-section { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; margin-bottom: 80px; align-items: start; }
         
-        .warehouse-vis { background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 60px; text-align: center; }
-        .warehouse-vis h2 { font-family: 'Playfair Display', serif; margin-bottom: 20px; }
-        .zone-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 800px; margin: 0 auto; }
-        .zone { height: 100px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; cursor: pointer; transition: 0.3s; }
-        .zone:hover { transform: scale(1.05); }
+        .calc-panel { background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .calc-group { margin-bottom: 30px; }
+        .calc-label { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 10px; color: #334155; }
+        .calc-value-display { color: #2563eb; font-family: monospace; font-size: 1.1rem; }
+        
+        input[type=range] { width: 100%; -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #2563eb; cursor: pointer; margin-top: -10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #cbd5e1; border-radius: 3px; }
+        input[type=range]:focus { outline: none; }
+
+        .input-row { display: flex; gap: 15px; margin-top: 10px; }
+        .custom-input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-weight: 600; color: #1e293b; }
+        
+        .price-card { background: #1e293b; color: white; padding: 40px; border-radius: 12px; text-align: center; position: sticky; top: 100px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .price-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px; color: #e2e8f0; }
+        .total-price { font-size: 3.5rem; font-weight: 800; color: #22c55e; margin: 10px 0; line-height: 1; }
+        .price-details { text-align: left; margin: 30px 0; border-top: 1px solid #334155; padding-top: 20px; }
+        .detail-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.95rem; color: #cbd5e1; }
+        .detail-row strong { color: white; }
+
+        .warehouse-vis { margin-top: 60px; padding: 30px; background: white; border: 1px solid #e2e8f0; border-radius: 12px; text-align: center; }
+        .zone-grid { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .zone { width: 120px; height: 80px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border-radius: 6px; font-size: 0.8rem; }
 
         footer { background: #0f172a; color: white; padding: 60px 0 20px 0; margin-top: auto; }
         .footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
@@ -57,7 +69,11 @@
         .footer-col ul li a { color: #94a3b8; }
         .copyright { border-top: 1px solid #334155; padding-top: 20px; text-align: center; color: #64748b; font-size: 0.9rem; }
 
-        @media (max-width: 900px) { .nav-links { display: none; } .stock-table, .zone-grid, .footer-content { display: block; } .stock-table td, .stock-table th { display: block; width: 100%; } .zone { margin-bottom: 10px; } }
+        @media (max-width: 900px) { 
+            .nav-links { display: none; } 
+            .calculator-section { grid-template-columns: 1fr; }
+            .price-card { position: static; }
+        }
     </style>
 </head>
 <body>
@@ -89,57 +105,90 @@
 
     <section class="page-hero">
         <div class="container">
-            <h1>Dostępność Magazynowa</h1>
-            <p>Sprawdź aktualny stan wolnych miejsc paletowych w czasie rzeczywistym.</p>
+            <h1>Kalkulator Magazynowy</h1>
+            <p>Oblicz koszt składowania Twojego towaru w czasie rzeczywistym.</p>
         </div>
     </section>
 
     <div class="container">
-        <div class="warehouse-vis">
-            <h2>Mapa Magazynu Błonie</h2>
-            <div class="zone-grid">
-                <div class="zone" style="background: #22c55e;" title="Wolne 500 mpl">SEKCJA A</div>
-                <div class="zone" style="background: #ef4444;" title="Zajęte">SEKCJA B</div>
-                <div class="zone" style="background: #eab308;" title="Ostatnie miejsca">SEKCJA C</div>
-                <div class="zone" style="background: #ef4444;" title="Zajęte">SEKCJA D</div>
+        
+        <div class="calculator-section">
+            
+            <div class="calc-panel">
+                <h2 style="margin-bottom: 25px; font-family: 'Playfair Display', serif;">Parametry składowania</h2>
+                
+                <div class="calc-group">
+                    <div class="calc-label">
+                        <span>Liczba palet (EUR)</span>
+                        <span class="calc-value-display" id="palletsDisplay">50</span>
+                    </div>
+                    <input type="range" min="1" max="1000" value="50" class="slider" id="palletsRange" oninput="syncInputs('palletsRange', 'palletsInput')">
+                    <div class="input-row">
+                        <input type="number" id="palletsInput" value="50" min="1" max="5000" class="custom-input" oninput="syncInputs('palletsInput', 'palletsRange')">
+                    </div>
+                    <p style="font-size: 0.8rem; color: #64748b; margin-top: 5px;">Powyżej 1000 palet prosimy o kontakt indywidualny.</p>
+                </div>
+
+                <div class="calc-group">
+                    <div class="calc-label">
+                        <span>Czas składowania (miesiące)</span>
+                        <span class="calc-value-display" id="monthsDisplay">1</span>
+                    </div>
+                    <input type="range" min="1" max="24" value="1" class="slider" id="monthsRange" oninput="syncInputs('monthsRange', 'monthsInput')">
+                    <div class="input-row">
+                        <input type="number" id="monthsInput" value="1" min="1" max="36" class="custom-input" oninput="syncInputs('monthsInput', 'monthsRange')">
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">Rodzaj powierzchni</label>
+                    <select id="storageType" class="custom-input" onchange="calculateTotal()">
+                        <option value="standard">Magazyn Standardowy (Ambient)</option>
+                        <option value="cold">Chłodnia Kontrolowana (+2°C do +8°C)</option>
+                        <option value="adr">Materiały Niebezpieczne (ADR)</option>
+                    </select>
+                </div>
             </div>
-            <p style="margin-top: 20px; font-size: 0.9rem; color: #64748b;">Kliknij sekcję, aby zobaczyć szczegóły (wymaga logowania).</p>
+
+            <div class="price-card">
+                <h3>Szacunkowa Wycena</h3>
+                <div class="total-price" id="totalPrice">0 PLN</div>
+                <p style="color: #94a3b8; font-size: 0.9rem;">netto za cały okres</p>
+
+                <div class="price-details">
+                    <div class="detail-row">
+                        <span>Cena za miejsce/mc:</span>
+                        <strong id="pricePerPallet">25 PLN</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Opłata manipulacyjna (In/Out):</span>
+                        <strong id="handlingFee">0 PLN</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Liczba palet:</span>
+                        <strong id="summaryPallets">50</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Czas trwania:</span>
+                        <strong id="summaryMonths">1 mc</strong>
+                    </div>
+                </div>
+
+                <a href="rezerwacja.html" class="btn-primary" style="background: #22c55e; width: 100%; display: block; padding: 15px;">Zarezerwuj Wstępnie</a>
+                <p style="margin-top: 15px; font-size: 0.8rem; color: #64748b;">To jest kalkulacja poglądowa. Ostateczna oferta może się różnić w zależności od rotacji towaru.</p>
+            </div>
         </div>
 
-        <table class="stock-table">
-            <thead>
-                <tr>
-                    <th>Lokalizacja</th>
-                    <th>Typ Składowania</th>
-                    <th>Wolne Miejsca (MPL)</th>
-                    <th>Status</th>
-                    <th>Akcja</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Błonie, Hala A</strong></td>
-                    <td>Regały Wysokiego Składowania</td>
-                    <td>450</td>
-                    <td><span class="status-badge status-available">Dostępne</span></td>
-                    <td><a href="kontakt.html" style="color: #2563eb; font-weight: 700;">Rezerwuj</a></td>
-                </tr>
-                <tr>
-                    <td><strong>Błonie, Hala B (Chłodnia)</strong></td>
-                    <td>Kontrola Temperatury</td>
-                    <td>20</td>
-                    <td><span class="status-badge status-limited">Ostatnie sztuki</span></td>
-                    <td><a href="kontakt.html" style="color: #2563eb; font-weight: 700;">Rezerwuj</a></td>
-                </tr>
-                <tr>
-                    <td><strong>Pruszków, Hala C</strong></td>
-                    <td>Block Stacking</td>
-                    <td>0</td>
-                    <td><span class="status-badge status-full">Brak miejsc</span></td>
-                    <td><span style="color: #94a3b8;">Powiadom mnie</span></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="warehouse-vis">
+            <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">Aktualna Dostępność Sektorów</h3>
+            <div class="zone-grid">
+                <div class="zone" style="background: #22c55e;">Sektor A<br>Wolny</div>
+                <div class="zone" style="background: #ef4444;">Sektor B<br>Zajęty</div>
+                <div class="zone" style="background: #eab308;">Sektor C<br>Ostatnie miejsca</div>
+                <div class="zone" style="background: #22c55e;">Sektor D<br>Wolny</div>
+            </div>
+        </div>
+
     </div>
 
     <footer>
@@ -171,9 +220,46 @@
 
     <script>
         lucide.createIcons();
+        
         function toggleModal() { const m = document.getElementById('clientModal'); m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; }
         document.getElementById('clientModal').addEventListener('click', function(e) { if(e.target===this) toggleModal(); });
         function toggleContrast() { document.body.classList.toggle('contrast-mode'); }
+
+        const RATES = {
+            standard: 25,
+            cold: 45,
+            adr: 60
+        };
+        const HANDLING_RATE = 15;
+
+        function syncInputs(sourceId, targetId) {
+            const val = document.getElementById(sourceId).value;
+            document.getElementById(targetId).value = val;
+            if(sourceId.includes('pallets')) document.getElementById('palletsDisplay').innerText = val;
+            if(sourceId.includes('months')) document.getElementById('monthsDisplay').innerText = val;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const pallets = parseInt(document.getElementById('palletsInput').value) || 0;
+            const months = parseInt(document.getElementById('monthsInput').value) || 0;
+            const type = document.getElementById('storageType').value;
+            const ratePerMonth = RATES[type];
+            const storageCost = pallets * ratePerMonth * months;
+            const handlingCost = pallets * HANDLING_RATE; 
+            const total = storageCost + handlingCost;
+
+            const formatter = new Intl.NumberFormat('pl-PL');
+            document.getElementById('totalPrice').innerText = formatter.format(total) + " PLN";
+            document.getElementById('pricePerPallet').innerText = ratePerMonth + " PLN";
+            document.getElementById('handlingFee').innerText = formatter.format(handlingCost) + " PLN";
+            document.getElementById('summaryPallets').innerText = pallets;
+            document.getElementById('summaryMonths').innerText = months + (months === 1 ? " miesiąc" : " miesięcy");
+        }
+
+        window.onload = function() {
+            calculateTotal();
+        }
     </script>
 </body>
 </html>
